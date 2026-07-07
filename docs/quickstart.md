@@ -21,6 +21,36 @@ library: ./library     # the Syncthing-shared Library root that `update` scans
 
 `memexId` is required for `process` and `update` because it records *which Memex introduced an asset*. It's machine identity, not a secret — secrets belong in `.env`. The live `memex.config.yml` is gitignored because it's per-machine.
 
+## Installing the `memex` command
+
+The examples below use `node bin/memex.js`. To type just `memex` instead, pick one of these. All three work; they differ in who manages the binding.
+
+**`npm link` — the standard npm way.** From the repo root:
+
+```sh
+npm link
+```
+
+This puts a `memex` command on your PATH, managed by npm. Undo it with `npm unlink -g memex2`. Use this unless you have a reason not to.
+
+**A symlink into your PATH — live and version-independent of npm.** Point a name on your PATH at the script:
+
+```sh
+ln -sf "$(pwd)/bin/memex.js" ~/.local/bin/memex   # any bin dir on your PATH
+```
+
+Because it's a symlink to the repo, edits to the source apply immediately. If you use nvm, note that node's bin dir is version-specific — a symlink placed there won't follow a `nvm use` to another version.
+
+**A shell alias — simplest, survives node version switches.**
+
+```sh
+echo 'alias memex="node '"$(pwd)"'/bin/memex.js"' >> ~/.zshrc && source ~/.zshrc
+```
+
+The tradeoff: aliases only exist in interactive shells, so scripts and other tools won't see `memex`.
+
+Whichever you choose, `memex` reads `memex.config.yml` from your **current directory**, not from where the script lives. Run it from your Memex project root, or pass `--config /path/to/memex.config.yml` from anywhere.
+
 ## Five-minute walkthrough
 
 Drop some images into a directory under your Library, then process it:
