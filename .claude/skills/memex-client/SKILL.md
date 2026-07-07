@@ -39,6 +39,6 @@ Memex 2.0 is a **local-first OP client** that catalogs content-addressed digital
 ## Guardrails
 
 - This client **consumes** OP; put business logic in OP core (`@octothorpes/core` in `octothorp.es`), not in client duplication. Core changes needed are enumerated in the dependency checklist — coordinate them in the `octothorp.es` repo.
-- Keep the vocabulary **standards-based (schema.org)**; `memex:` only for genuine gaps (`mediaType`, `addedBy`).
+- Keep the vocabulary **standards-based (schema.org)**; `memex:` only for genuine gaps (`addedBy`). `mediaType` is **derived** from `schema:encodingFormat`, not stored. The hash is expressed twice on purpose — `ni:` URI (identity/edge target) + `schema:sha256` literal (display/query); don't collapse them.
 - Secrets in `.env` only; everything else (identity, vocabulary declaration, indexing config) in a committed `profile.public.json`.
 - Bridging (AP/ATProto) is out of scope.

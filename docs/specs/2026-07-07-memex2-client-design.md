@@ -96,7 +96,7 @@ Visiting `/item/<hash>` renders **two graphs stitched at the hash**:
 | *(the hash)* | **Relationship** (generated `Item` edge) + literal | `octo:octothorpes` → `ni:///sha-256;VAL` (subtype `Item`); plus `schema:sha256` hex literal | node + literal |
 | `asset` | documentRecord leaf | `schema:contentUrl` | uri |
 | `image` | documentRecord leaf — **picked up when present** | `schema:image` | uri |
-| `categories` (image/video/audio/document) | documentRecord leaf — **mediaType, literal** | `memex:mediaType` | literal |
+| `categories` (image/video/audio/document) | **Not stored — derived** from mimetype at query/render time | *(derive from `schema:encodingFormat`)* | — |
 | *(mimetype)* | documentRecord leaf — **literal** | `schema:encodingFormat` | literal |
 | *(byte size)* | documentRecord leaf | `schema:contentSize` | literal |
 | *(width/height)* | documentRecord leaf | `schema:width` / `schema:height` | literal |
@@ -107,10 +107,10 @@ Visiting `/item/<hash>` renders **two graphs stitched at the hash**:
 | `layout`, `permalink`, `gallery` | **Dropped from OP** (11ty rendering / replaced by hash-permalink + Collection links) | — | — |
 
 **Notes:**
-- **`memex:` is only `mediaType` and `addedBy`** — everything else is schema.org. `mediaType` is a convenience literal (derivable from `encodingFormat`); kept for cheap feed filtering ("all videos" = literal match, accepted trade-off of choosing literal over a typed-subclass node).
+- **`memex:` is only `addedBy`** — everything else is schema.org. **`mediaType` is not stored; it is derived** from `schema:encodingFormat` (the MIME prefix: `image/*` → image, etc.). schema.org has no clean *literal* category property, and the category is a pure function of the MIME type, so materializing it separately would only risk drift. Category queries use a MIME-prefix filter (`STRSTARTS(?fmt, "video/")`); materialize a `memex:mediaType` literal later only if a feed query is meaningfully simpler with a stored category. (The schema.org *node* routes — `rdf:type schema:VideoObject` or `schema:additionalType` — were rejected because they want to type the media *thing*, which is our statement-free Item hub; typing the Record instead is semantically loose.)
 - Every `documentRecord` key must be **declared in the client profile** with namespace + range (the admission allowlist + typing contract; undeclared predicates a harmonizer emits are dropped — ref profile-vocab doc).
 - **Intrinsic facts are computed by the CLI at hash time** (single pass over bytes; deterministic; identical on every Memex) and written into frontmatter.
-- The hash appears both as the `Item` edge target (`ni:` node, traversable) and as a `schema:sha256` literal (display/sort convenience).
+- **The hash is expressed twice, deliberately — same digest, two roles. Do NOT "optimize away" the literal.** (a) As the **Item edge target** `ni:///sha-256;<base64url>` — an *identity URI* (a node), the subject/object of edges and the federation join key. (b) As a **`schema:sha256` hex literal** on the Record — an *asserted, display/sort/query-facing value* you can `SELECT` without URI-parsing (and it matches the hex `/item/<hex>` permalink). The `ni:` URI carries algorithm identity + a dereference convention (`.well-known/ni/`); the hex literal is the readable value. The literal is asserted *by the Record* about the item it describes (like `encodingFormat`), never stored on the hub — so it is not a statements-by violation. Dropping the literal would force every consumer to base64url-decode the URI.
 
 ---
 

@@ -6,9 +6,9 @@
 
 ## MVP-blocking (do first)
 
-1. **[core] `documentRecord` projection** — route declared non-canonical predicates into a `documentRecord` sub-object in `getBlobjectFromResponse`; drop undeclared ones. *Not built yet* (confirmed in the profile-vocab doc). This is the seam all Memex intrinsic/catalog facts flow through. **Hard blocker.**
+1. **[core] `documentRecord` projection** — route declared non-canonical predicates into a `documentRecord` sub-object in `getBlobjectFromResponse`; drop undeclared ones. *Not built yet* (confirmed in the profile-vocab doc). This is the seam all Memex intrinsic/catalog facts flow through. **Hard blocker.** → actionable plan: `octothorp.es/docs/plans/point7/2026-07-07-documentrecord-projection.md`.
 
-2. **[core] Markdown handler** — a `handlers/markdown/handler.js` alongside the HTML handler that parses YAML frontmatter + body `[[wikilinks]]`. Includes the **deferred, whole-instance, basename-keyed resolution pass** with a `resolvedLinks`/`unresolvedLinks` split and path-qualifier collision handling (spec §5). Input contract: `(subjectUrl, rawMarkdown)`. **Hard blocker** for the curate-in-Obsidian workflow.
+2. **[core] Markdown handler** — a `handlers/markdown/handler.js` alongside the HTML handler that parses YAML frontmatter + body `[[wikilinks]]`. Includes the **deferred, whole-instance, basename-keyed resolution pass** with a `resolvedLinks`/`unresolvedLinks` split and path-qualifier collision handling (spec §5). Input contract: `(subjectUrl, rawMarkdown)`. **Hard blocker** for the curate-in-Obsidian workflow. → actionable plan: `octothorp.es/docs/plans/point7/2026-07-07-markdown-handler-wikilinks.md`.
 
 3. **[profile] Client Profile Rev 1** — `profile.public.json` holding the Memex vocabulary declaration: every `documentRecord` predicate with namespace + range (schema.org + the thin `memex:` gaps), plus the declared `Item` relationship subtype and its first-class path. `.env` = secrets only. Drives admission + typing. (Ref profile-vocab doc, Wave 2 Rev 1/2.)
 
