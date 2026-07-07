@@ -6,10 +6,26 @@ Assets and their content-hash identity sync; **Records are local** to each machi
 
 ## Status
 
-Design phase. **Nothing is built yet.** This repo currently holds the design spec, the OP-core dependency checklist, and the reference decisions the design is built on.
+**Wave 1 (the CLI) is built.** `memex process|update|verify` turn a directory of assets into content-addressed Records, Collections, and an in-directory `manifest.json` — a pure artifact generator with no dependency on a running OP, Oxigraph, or network. The OP-index push and 11ty site are later waves. Everything else remains design (spec, OP-core dependency checklist, reference decisions).
+
+## CLI usage
+
+```sh
+npm install
+cp memex.config.yml.example memex.config.yml   # then set memexId
+
+node bin/memex.js process <dir>   # hash a directory → manifest.json + Records + one Collection
+node bin/memex.js update          # baseline Records for assets peers added (scans the Library)
+node bin/memex.js verify <dir>    # asset-integrity check vs manifest.json (warn-only)
+
+npm test                          # node --test
+```
+
+`process` writes `manifest.json` *into* the asset directory (the tracked/untracked boundary — it syncs with the assets) and generates `.md` Records + a baseline Collection under the configured `out` dir. Re-running is incremental and idempotent.
 
 ## Start here
 
+- [`docs/quickstart.md`](docs/quickstart.md) — install the CLI and run `process`/`update`/`verify`, with a full command reference.
 - [`docs/specs/2026-07-07-memex2-client-design.md`](docs/specs/2026-07-07-memex2-client-design.md) — the design source of truth.
 - [`docs/memex2-op-core-dependencies.md`](docs/memex2-op-core-dependencies.md) — OP-core work this build depends on, in priority order.
 - [`docs/reference/`](docs/reference/) — the OP ontology decisions underpinning the design.
