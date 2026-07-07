@@ -1,0 +1,20 @@
+{
+  "name": "memex2",
+  "version": "0.1.0",
+  "description": "Memex 2.0 — local-first OP client CLI: hash assets into content-addressed Records, Collections, and an in-directory manifest.",
+  "type": "module",
+  "bin": {
+    "memex": "./bin/memex.js"
+  },
+  "scripts": {
+    "test": "node --test 'test/**/*.test.js'"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "js-yaml": "^4.1.0"
+  },
+  "license": "MIT"
+}

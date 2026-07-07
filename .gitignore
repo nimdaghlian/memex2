@@ -4,3 +4,6 @@ node_modules/
 _site/
 dist/
 make-gals-copy/
+memex.config.yml
+site/
+library/

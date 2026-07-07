@@ -1,0 +1,12 @@
+# Memex 2.0 local machine config. Copy to `memex.config.yml` and set memexId.
+# This is machine identity + paths, not secret (secrets live in .env). The live
+# memex.config.yml is gitignored because memexId is per-machine.
+
+# This Memex's identity: the manifest `originatedBy` and each Record's `memex:addedBy`.
+memexId: memex-me
+
+# Where generated Records + Collections (.md) are written (the 11ty source).
+out: ./site
+
+# The Syncthing-shared Library root that `update` scans for peers' manifests.
+library: ./library
