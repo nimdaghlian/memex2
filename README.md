@@ -14,6 +14,7 @@ Assets and their content-hash identity sync; **Records are local** to each machi
 npm install
 cp memex.config.yml.example memex.config.yml   # then set memexId
 
+node bin/memex.js                     # no args → interactive menu-driven wizard
 node bin/memex.js process <dir>       # hash a directory → manifest.json + Records + one Collection
 node bin/memex.js tag <dir> --tag x   # add tags to a processed directory's Records
 node bin/memex.js update              # baseline Records for assets peers added (scans the Library)

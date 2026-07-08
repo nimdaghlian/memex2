@@ -4,7 +4,8 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, isAbsolute } from 'node:path';
 
-import { loadConfig } from '../src/config.js';
+import { existsSync } from 'node:fs';
+import { loadConfig, saveConfig, CONFIG_NAME } from '../src/config.js';
 
 test('loadConfig reads memexId and resolves out/library against the config dir', () => {
   const dir = mkdtempSync(join(tmpdir(), 'memex-cfg-'));
@@ -22,4 +23,17 @@ test('loadConfig applies defaults when no config file is present', () => {
   const cfg = loadConfig({ cwd: dir });
   assert.equal(cfg.memexId, null);
   assert.equal(cfg.out, join(dir, 'site'));
+});
+
+test('saveConfig writes memex.config.yml that loadConfig reads back', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'memex-cfg-'));
+  const path = saveConfig({ cwd: dir, memexId: 'memex-nim', out: './site', library: './library' });
+
+  assert.equal(path, join(dir, CONFIG_NAME));
+  assert.equal(existsSync(path), true);
+
+  const cfg = loadConfig({ cwd: dir });
+  assert.equal(cfg.memexId, 'memex-nim');
+  assert.equal(cfg.out, join(dir, 'site'));
+  assert.equal(cfg.library, join(dir, 'library'));
 });

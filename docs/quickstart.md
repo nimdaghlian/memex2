@@ -51,6 +51,26 @@ The tradeoff: aliases only exist in interactive shells, so scripts and other too
 
 Whichever you choose, `memex` reads `memex.config.yml` from your **current directory**, not from where the script lives. Run it from your Memex project root, or pass `--config /path/to/memex.config.yml` from anywhere.
 
+## Interactive mode
+
+Run `memex` with no arguments to launch a menu-driven wizard — handy for onboarding or when you'd rather not remember flags:
+
+```sh
+memex
+```
+
+```
+  1) Process a directory
+  2) Tag a directory
+  3) Update from peers
+  4) Verify a directory
+  5) Create config
+  6) Help
+  7) Quit
+```
+
+Each choice walks you through the same work the subcommands do. **Create config** (5) is the first-run step: it writes `memex.config.yml` (prompting for `memexId`, `out`, `library`) and applies it immediately, so you can process a directory in the same session. Process/tag/verify let you pick a directory from your Library by number, or type any path.
+
 ## Five-minute walkthrough
 
 Drop some images into a directory under your Library, then process it:

@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 
-import { loadConfig } from '../src/config.js';
+import { loadConfig, saveConfig } from '../src/config.js';
 import { runProcess } from '../src/commands/process.js';
 import { runUpdate } from '../src/commands/update.js';
 import { runVerify } from '../src/commands/verify.js';
 import { runTag } from '../src/commands/tag.js';
+import { startSession } from '../src/interactive.js';
 import { ok, info, warn, err } from '../src/output.js';
 
 const program = new Command();
@@ -116,4 +117,42 @@ program
     }
   });
 
-program.parse(process.argv);
+// No subcommand → launch the interactive wizard. The command closures capture a mutable `cfg`
+// so the create-config flow takes effect within the same session.
+if (process.argv.slice(2).length === 0) {
+  const cfg = loadConfig({});
+  const commands = {
+    process: ({ dir, tags }) => {
+      requireMemexId(cfg);
+      const s = runProcess({ dir, out: cfg.out, memexId: cfg.memexId, tags });
+      if (s.added.length) info(`added: ${s.added.join(', ')}`);
+      ok(`process: ${s.records} record(s), ${s.collection} collection`);
+    },
+    tag: ({ dir, tags }) => {
+      const s = runTag({ dir, out: cfg.out, tags });
+      ok(`tag: ${s.tagged} record(s) tagged`);
+    },
+    update: () => {
+      requireMemexId(cfg);
+      const s = runUpdate({ library: cfg.library, out: cfg.out, memexId: cfg.memexId });
+      ok(`update: ${s.records} record(s), ${s.collections} collection(s) from peers`);
+    },
+    verify: ({ dir }) => {
+      const r = runVerify({ dir });
+      for (const w of r.warnings) warn(formatWarning(w));
+      if (r.ok) ok('verify: clean');
+      else info(`verify: ${r.warnings.length} warning(s) — non-fatal`);
+    },
+    createConfig: ({ memexId, out, library }) => {
+      const path = saveConfig({ cwd: process.cwd(), memexId, out, library });
+      Object.assign(cfg, loadConfig({})); // reload so this session sees the new identity
+      ok(`config written to ${path}`);
+    },
+  };
+
+  startSession({ cwd: process.cwd(), libraryDir: cfg.library, commands, helpFn: () => program.outputHelp() })
+    .then(() => process.exit(0))
+    .catch((e) => { err(e.message); process.exit(1); });
+} else {
+  program.parse(process.argv);
+}
