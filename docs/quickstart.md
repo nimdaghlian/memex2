@@ -177,7 +177,7 @@ node bin/memex.js process <dir> [options]
 | `--config <file>` | `./memex.config.yml` | Config file path. |
 | `--overwrite` | off | Replace existing `.md` files instead of skipping them. |
 | `--no-parse-date` | date parsing on | Skip deriving `schema:dateCreated` from filenames. |
-| `--tag <tag>` | none | Seed a tag on every Record and the Collection. Repeatable: `--tag a --tag b`. |
+| `--tag <tags>` | none | Seed tags on every Record and the Collection. Comma-separated (`--tag a,b`) and/or repeatable (`--tag a --tag b`). |
 
 Behavior worth knowing:
 
@@ -192,12 +192,19 @@ Behavior worth knowing:
 Add tags to every Record of an already-processed directory. Use this to tag after the fact — `process --tag` seeds tags at generation time; `tag` edits the Records you already have.
 
 ```sh
-node bin/memex.js tag <dir> --tag <tag> [--tag <tag> ...]
+node bin/memex.js tag <dir> --tag <tags>
+```
+
+`--tag` takes a comma-separated list and may be repeated, so these are equivalent:
+
+```sh
+memex tag library/trees --tag forest,winter
+memex tag library/trees --tag forest --tag winter
 ```
 
 | Option | Default | Effect |
 |---|---|---|
-| `--tag <tag>` | required | Tag to add. Repeatable. |
+| `--tag <tags>` | required | Tags to add. Comma-separated and/or repeatable. |
 | `--out <dir>` | config `out` | Where the Records live. |
 | `--config <file>` | `./memex.config.yml` | Config file path. |
 

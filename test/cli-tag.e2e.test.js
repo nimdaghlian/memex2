@@ -41,3 +41,16 @@ test('tag command adds tags to a processed directory\'s Records', () => {
   assert.match(out, /tag: 1 record\(s\) tagged/);
   assert.deepEqual(recordTags(root), ['oak']);
 });
+
+test('a single --tag accepts a comma-separated list', () => {
+  const { root } = scaffold();
+  run(['process', 'library/photos', '--tag', 'forest, winter'], root);
+  assert.deepEqual(recordTags(root), ['forest', 'winter']);
+});
+
+test('comma lists and repeated --tag flags combine', () => {
+  const { root } = scaffold();
+  run(['process', 'library/photos'], root);
+  run(['tag', 'library/photos', '--tag', 'a,b', '--tag', 'c'], root);
+  assert.deepEqual(recordTags(root), ['a', 'b', 'c']);
+});

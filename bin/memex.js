@@ -15,9 +15,10 @@ function config(opts) {
   return loadConfig({ configPath: opts.config });
 }
 
-// Accumulator for repeatable --tag flags: `--tag a --tag b` → ['a', 'b'].
+// Accumulator for --tag flags. Each value may itself be a comma-separated list, and the flag is
+// repeatable, so `--tag a,b --tag c` and `--tag a --tag b` both work.
 function collect(value, acc) {
-  acc.push(value);
+  for (const tag of value.split(',').map(t => t.trim()).filter(Boolean)) acc.push(tag);
   return acc;
 }
 
