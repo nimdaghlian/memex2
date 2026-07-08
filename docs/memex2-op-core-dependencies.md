@@ -4,6 +4,8 @@
 >
 > Legend: **[core]** = new/changed work in `packages/core` (octothorp.es). **[profile]** = Memex client-profile configuration, *not* a core change. **[verify]** = a capability to confirm on the deployed stack before relying on it.
 
+> **Orchestration epic:** octothorp.es **#240** (`octothorp.es/docs/plans/point7/2026-07-08-memex-core-epic.md`) composes the MVP-blocking items below into dispatch-ready chunks C0–C14. Scoped to stop before the bulk of #217; RDF-star follows the epic.
+
 ## MVP-blocking (do first)
 
 1. **[core] `documentRecord` projection** — route declared non-canonical predicates into a `documentRecord` sub-object in `getBlobjectFromResponse`; drop undeclared ones. *Not built yet* (confirmed in the profile-vocab doc). This is the seam all Memex intrinsic/catalog facts flow through. **Hard blocker.** → **octothorp.es #237**; plan: `octothorp.es/docs/plans/point7/2026-07-07-documentrecord-projection.md`.
