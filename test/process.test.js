@@ -8,18 +8,7 @@ import yaml from 'js-yaml';
 import { runProcess } from '../src/commands/process.js';
 import { readManifest } from '../src/manifest.js';
 import { hashBytes } from '../src/hash.js';
-
-function pngFile(width, height, salt) {
-  // Minimal PNG: signature + IHDR carrying dimensions, plus a salt byte for a distinct hash.
-  const buf = Buffer.alloc(25);
-  Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]).copy(buf, 0);
-  buf.writeUInt32BE(13, 8);
-  buf.write('IHDR', 12, 'ascii');
-  buf.writeUInt32BE(width, 16);
-  buf.writeUInt32BE(height, 20);
-  buf[24] = salt;
-  return buf;
-}
+import { pngBytes as pngFile } from './helpers/images.js';
 
 function setup() {
   const root = mkdtempSync(join(tmpdir(), 'memex-proc-'));

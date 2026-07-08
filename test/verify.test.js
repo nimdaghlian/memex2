@@ -7,17 +7,9 @@ import { join } from 'node:path';
 import { runVerify } from '../src/commands/verify.js';
 import { hashBytes } from '../src/hash.js';
 import { writeManifest } from '../src/manifest.js';
+import { pngBytes } from './helpers/images.js';
 
-function png(salt) {
-  const buf = Buffer.alloc(25);
-  Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]).copy(buf, 0);
-  buf.writeUInt32BE(13, 8);
-  buf.write('IHDR', 12, 'ascii');
-  buf.writeUInt32BE(10, 16);
-  buf.writeUInt32BE(10, 20);
-  buf[24] = salt;
-  return buf;
-}
+const png = (salt) => pngBytes(10, 10, salt);
 
 function baseline(files) {
   const dir = mkdtempSync(join(tmpdir(), 'memex-vf-'));

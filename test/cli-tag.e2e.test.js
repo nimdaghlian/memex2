@@ -1,14 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, readFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import yaml from 'js-yaml';
 
+import { jpegBytes } from './helpers/images.js';
+
 const REPO = join(import.meta.dirname, '..');
 const BIN = join(REPO, 'bin', 'memex.js');
-const FIXTURES = join(REPO, 'make-gals-copy', 'fallen-trees');
 
 function run(args, cwd) {
   return execFileSync('node', [BIN, ...args], { cwd, encoding: 'utf8' });
@@ -19,7 +20,7 @@ function scaffold() {
   writeFileSync(join(root, 'memex.config.yml'), 'memexId: memex-e2e\nout: ./site\nlibrary: ./library\n');
   const photos = join(root, 'library', 'photos');
   mkdirSync(photos, { recursive: true });
-  copyFileSync(join(FIXTURES, 'IMG_1758_122322.jpeg'), join(photos, 'IMG_1758_122322.jpeg'));
+  writeFileSync(join(photos, 'IMG_1758_122322.jpeg'), jpegBytes(4032, 3024, 1));
   return { root };
 }
 

@@ -5,18 +5,21 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import { readIntrinsics } from '../src/intrinsics.js';
-import { hashFile } from '../src/hash.js';
-
-const FIXTURES = join(import.meta.dirname, '..', 'make-gals-copy', 'fallen-trees');
+import { hashBytes } from '../src/hash.js';
+import { jpegBytes } from './helpers/images.js';
 
 test('readIntrinsics computes hash + intrinsic facts for a JPEG in one pass', () => {
-  const path = join(FIXTURES, 'IMG_1758_122322.jpeg');
-  const facts = readIntrinsics(path, 'IMG_1758_122322.jpeg');
+  const bytes = jpegBytes(4032, 3024, 7);
+  const dir = mkdtempSync(join(tmpdir(), 'memex-intr-'));
+  const path = join(dir, 'photo.jpeg');
+  writeFileSync(path, bytes);
 
-  assert.equal(facts.hex, hashFile(path).hex);
-  assert.equal(facts.ni, hashFile(path).ni);
+  const facts = readIntrinsics(path, 'photo.jpeg');
+
+  assert.equal(facts.hex, hashBytes(bytes).hex);
+  assert.equal(facts.ni, hashBytes(bytes).ni);
   assert.equal(facts.mimetype, 'image/jpeg');
-  assert.equal(facts.byteSize, 3243488);
+  assert.equal(facts.byteSize, bytes.length);
   assert.equal(facts.width, 4032);
   assert.equal(facts.height, 3024);
 });
