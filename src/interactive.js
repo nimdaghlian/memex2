@@ -1,6 +1,7 @@
 import { createInterface } from 'node:readline';
 import { existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import figlet from 'figlet';
 
 import { ok, info, warn, err } from './output.js';
 
@@ -36,6 +37,14 @@ export function createAsk(rl) {
 
 export function parseTags(input) {
   return String(input ?? '').split(',').map(t => t.trim()).filter(Boolean);
+}
+
+// Printed once when the wizard opens: the memex name in big ASCII letters, then a greeting.
+// Falls back to the tool name before a config exists; the greeting is skipped if no curator set.
+export function sessionHeader({ out, memexId, curatorName }) {
+  out('\n');
+  out(figlet.textSync(memexId || 'memex') + '\n');
+  if (curatorName) out(`\n  Hi ${curatorName}!\n`);
 }
 
 function printMenu(out) {
@@ -114,13 +123,16 @@ async function doVerify({ ask, out, cwd, libraryDir, commands }) {
 async function doCreateConfig({ ask, commands }) {
   const memexId = await requiredInput(ask, '  memexId (this machine\'s identity): ', 'memexId is required.');
   if (memexId === null) return;
+  const curatorName = ((await ask('  Curator name (optional): ')) ?? '').trim() || undefined;
   const out = ((await ask('  Output dir for Records/Collections (default: ./site): ')) ?? '').trim() || './site';
   const library = ((await ask('  Library root (default: ./library): ')) ?? '').trim() || './library';
-  commands.createConfig({ memexId, out, library });
+  commands.createConfig({ memexId, curatorName, out, library });
 }
 
-export async function run({ ask, out, cwd = process.cwd(), libraryDir, commands, helpFn }) {
+export async function run({ ask, out, cwd = process.cwd(), libraryDir, commands, helpFn, memexId, curatorName }) {
   const base = libraryDir ?? cwd;
+
+  sessionHeader({ out, memexId, curatorName });
 
   while (true) {
     printMenu(out);

@@ -3,7 +3,11 @@
 # memex.config.yml is gitignored because memexId is per-machine.
 
 # This Memex's identity: the manifest `originatedBy` and each Record's `memex:addedBy`.
+# Also rendered as an ASCII banner when the interactive wizard opens.
 memexId: memex-me
+
+# Your name — the wizard greets you with it on open. Optional.
+curatorName: Me
 
 # Where generated Records + Collections (.md) are written (the 11ty source).
 out: ./site

@@ -69,7 +69,7 @@ memex
   7) Quit
 ```
 
-Each choice walks you through the same work the subcommands do. **Create config** (5) is the first-run step: it writes `memex.config.yml` (prompting for `memexId`, `out`, `library`) and applies it immediately, so you can process a directory in the same session. Process/tag/verify let you pick a directory from your Library by number, or type any path.
+On open, the wizard prints your memex name (`memexId`) as an ASCII banner and greets you by `curatorName`. Each choice walks you through the same work the subcommands do. **Create config** (5) is the first-run step: it writes `memex.config.yml` (prompting for `memexId`, curator name, `out`, `library`) and applies it immediately, so you can process a directory in the same session. Process/tag/verify let you pick a directory from your Library by number, or type any path.
 
 ## Five-minute walkthrough
 

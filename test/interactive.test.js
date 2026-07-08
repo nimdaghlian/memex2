@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { run, parseTags, pickDirectory } from '../src/interactive.js';
+import { run, parseTags, pickDirectory, sessionHeader } from '../src/interactive.js';
 
 // A scripted `ask`: returns queued answers in order. Throws if it runs dry (catches a wizard
 // that prompts more than the test scripted — usually a menu that never quit).
@@ -79,14 +79,35 @@ test('tag flow requires at least one tag — a blank entry skips without dispatc
   assert.deepEqual(commands.calls, []);
 });
 
-test('create-config flow gathers memexId/out/library and dispatches createConfig', async () => {
+test('create-config flow gathers memexId/curatorName/out/library and dispatches createConfig', async () => {
   const commands = spyCommands();
-  // menu:5 → memexId → out (blank=default) → library (blank=default) → menu:7
-  await run({ ask: scriptedAsk(['5', 'memex-nim', '', '', '7']), out: noop, cwd: '/tmp', libraryDir: '/tmp', commands });
+  // menu:5 → memexId → curatorName → out (blank=default) → library (blank=default) → menu:7
+  await run({ ask: scriptedAsk(['5', 'memex-nim', 'Nim', '', '', '7']), out: noop, cwd: '/tmp', libraryDir: '/tmp', commands });
 
   assert.equal(commands.calls.length, 1);
   assert.equal(commands.calls[0].name, 'createConfig');
-  assert.deepEqual(commands.calls[0].arg, { memexId: 'memex-nim', out: './site', library: './library' });
+  assert.deepEqual(commands.calls[0].arg, { memexId: 'memex-nim', curatorName: 'Nim', out: './site', library: './library' });
+});
+
+test('sessionHeader banners the memex name and greets the curator', () => {
+  const out = [];
+  sessionHeader({ out: (s) => out.push(s), memexId: 'memexnim', curatorName: 'Nim' });
+  const text = out.join('');
+  assert.match(text, /Hi Nim/);
+  assert.ok(text.split('\n').length > 3, 'expected a multi-line ASCII banner');
+});
+
+test('sessionHeader omits the greeting when no curator name is set', () => {
+  const out = [];
+  sessionHeader({ out: (s) => out.push(s), memexId: 'memexnim' });
+  assert.doesNotMatch(out.join(''), /Hi /);
+});
+
+test('opening the wizard prints the header once, before the menu loop', async () => {
+  const out = [];
+  await run({ ask: scriptedAsk(['7']), out: (s) => out.push(s), memexId: 'm', curatorName: 'Nim', cwd: '/tmp', libraryDir: '/tmp', commands: spyCommands() });
+  const greetings = out.join('').match(/Hi Nim/g) ?? [];
+  assert.equal(greetings.length, 1);
 });
 
 test('a command that throws does not crash the menu loop', async () => {

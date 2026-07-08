@@ -148,14 +148,14 @@ if (process.argv.slice(2).length === 0) {
       if (r.ok) ok('verify: clean');
       else info(`verify: ${r.warnings.length} warning(s) — non-fatal`);
     },
-    createConfig: ({ memexId, out, library }) => {
-      const path = saveConfig({ cwd: process.cwd(), memexId, out, library });
+    createConfig: ({ memexId, curatorName, out, library }) => {
+      const path = saveConfig({ cwd: process.cwd(), memexId, curatorName, out, library });
       Object.assign(cfg, loadConfig({})); // reload so this session sees the new identity
       ok(`config written to ${path}`);
     },
   };
 
-  startSession({ cwd: process.cwd(), libraryDir: cfg.library, commands, helpFn: () => program.outputHelp() })
+  startSession({ cwd: process.cwd(), libraryDir: cfg.library, commands, helpFn: () => program.outputHelp(), memexId: cfg.memexId, curatorName: cfg.curatorName })
     .then(() => process.exit(0))
     .catch((e) => { err(e.message); process.exit(1); });
 } else {

@@ -37,3 +37,14 @@ test('saveConfig writes memex.config.yml that loadConfig reads back', () => {
   assert.equal(cfg.out, join(dir, 'site'));
   assert.equal(cfg.library, join(dir, 'library'));
 });
+
+test('saveConfig and loadConfig round-trip a curatorName', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'memex-cfg-'));
+  saveConfig({ cwd: dir, memexId: 'memex-nim', curatorName: 'Nim', out: './site', library: './library' });
+  assert.equal(loadConfig({ cwd: dir }).curatorName, 'Nim');
+});
+
+test('curatorName defaults to null when absent', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'memex-cfg-'));
+  assert.equal(loadConfig({ cwd: dir }).curatorName, null);
+});
