@@ -43,7 +43,7 @@ export function parseTags(input) {
 // Falls back to the tool name before a config exists; the greeting is skipped if no curator set.
 export function sessionHeader({ out, memexId, curatorName }) {
   out('\n');
-  out(figlet.textSync(memexId || 'memex') + '\n');
+  out(figlet.textSync(memexId || 'memex', { font: 'Slant Relief' }) + '\n');
   if (curatorName) out(`\n  Hi ${curatorName}!\n`);
 }
 
