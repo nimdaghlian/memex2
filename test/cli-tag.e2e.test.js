@@ -32,25 +32,33 @@ test('process --tag seeds tags on every generated Record (repeatable flag)', () 
   assert.deepEqual(recordTags(root), ['trees', 'winter']);
 });
 
-test('tag command adds tags to a processed directory\'s Records', () => {
+test('tag command takes bare positional tags after the directory', () => {
   const { root } = scaffold();
   run(['process', 'library/photos'], root);
   assert.deepEqual(recordTags(root), []);
 
-  const out = run(['tag', 'library/photos', '--tag', 'oak'], root);
+  const out = run(['tag', 'library/photos', 'oak'], root);
   assert.match(out, /tag: 1 record\(s\) tagged/);
   assert.deepEqual(recordTags(root), ['oak']);
 });
 
-test('a single --tag accepts a comma-separated list', () => {
+test('positional tags are comma-delimited, so a tag may contain spaces', () => {
+  const { root } = scaffold();
+  run(['process', 'library/photos'], root);
+
+  // As a shell would split `... library/photos forest,winter,old growth` (unquoted).
+  run(['tag', 'library/photos', 'forest,winter,old', 'growth'], root);
+  assert.deepEqual(recordTags(root), ['forest', 'winter', 'old growth']);
+});
+
+test('process still seeds tags via --tag (comma-separated)', () => {
   const { root } = scaffold();
   run(['process', 'library/photos', '--tag', 'forest, winter'], root);
   assert.deepEqual(recordTags(root), ['forest', 'winter']);
 });
 
-test('comma lists and repeated --tag flags combine', () => {
+test('tag with no tags given errors', () => {
   const { root } = scaffold();
   run(['process', 'library/photos'], root);
-  run(['tag', 'library/photos', '--tag', 'a,b', '--tag', 'c'], root);
-  assert.deepEqual(recordTags(root), ['a', 'b', 'c']);
+  assert.throws(() => run(['tag', 'library/photos'], root), /at least one tag/i);
 });

@@ -16,7 +16,7 @@ cp memex.config.yml.example memex.config.yml   # then set memexId
 
 node bin/memex.js                     # no args → interactive menu-driven wizard
 node bin/memex.js process <dir>       # hash a directory → manifest.json + Records + one Collection
-node bin/memex.js tag <dir> --tag x   # add tags to a processed directory's Records
+node bin/memex.js tag <dir> a,b,c     # add tags to a processed directory's Records
 node bin/memex.js update              # baseline Records for assets peers added (scans the Library)
 node bin/memex.js verify <dir>        # asset-integrity check vs manifest.json (warn-only)
 

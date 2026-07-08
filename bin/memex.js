@@ -6,7 +6,7 @@ import { runProcess } from '../src/commands/process.js';
 import { runUpdate } from '../src/commands/update.js';
 import { runVerify } from '../src/commands/verify.js';
 import { runTag } from '../src/commands/tag.js';
-import { startSession } from '../src/interactive.js';
+import { startSession, parseTags } from '../src/interactive.js';
 import { ok, info, warn, err } from '../src/output.js';
 
 const program = new Command();
@@ -105,12 +105,16 @@ program
   .command('tag')
   .description("Add tags to every Record of an already-processed directory")
   .argument('<dir>', 'Processed asset directory whose Records to tag')
-  .requiredOption('--tag <tag>', 'Tag to add (repeatable)', collect, [])
+  .argument('[tags...]', 'Tags to add — comma-delimited (a tag may contain spaces)')
   .option('--out <dir>', 'Record/Collection output dir (overrides config)')
   .option('--config <file>', 'Path to memex.config.yml')
-  .action((dir, opts) => {
+  .action((dir, tagWords, opts) => {
     try {
-      const s = runTag({ dir, out: opts.out ?? config(opts).out, tags: opts.tag });
+      // Rejoin the shell-split words, then split on commas only: `forest,winter,old growth`
+      // → ['forest', 'winter', 'old growth']. Commas delimit tags; spaces live inside them.
+      const tags = parseTags(tagWords.join(' '));
+      if (tags.length === 0) throw new Error('provide at least one tag, e.g. `memex tag <dir> forest,winter`');
+      const s = runTag({ dir, out: opts.out ?? config(opts).out, tags });
       ok(`tag: ${s.tagged} record(s) tagged`);
     } catch (e) {
       err(e.message);

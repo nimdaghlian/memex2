@@ -192,19 +192,21 @@ Behavior worth knowing:
 Add tags to every Record of an already-processed directory. Use this to tag after the fact — `process --tag` seeds tags at generation time; `tag` edits the Records you already have.
 
 ```sh
-node bin/memex.js tag <dir> --tag <tags>
+node bin/memex.js tag <dir> <tags>
 ```
 
-`--tag` takes a comma-separated list and may be repeated, so these are equivalent:
+Tags are bare positional arguments, **comma-delimited** — so a tag can contain spaces, and you don't need quotes:
 
 ```sh
-memex tag library/trees --tag forest,winter
-memex tag library/trees --tag forest --tag winter
+memex tag library/trees forest,winter
+memex tag library/subdir tag1,tag2,tag 3 with spaces,tag4
 ```
 
-| Option | Default | Effect |
+Commas separate tags; spaces don't. `forest,winter,old growth` is three tags: `forest`, `winter`, `old growth`.
+
+| Argument / option | Default | Effect |
 |---|---|---|
-| `--tag <tags>` | required | Tags to add. Comma-separated and/or repeatable. |
+| `<tags>` | required | Comma-delimited tags to add (spaces allowed within a tag). |
 | `--out <dir>` | config `out` | Where the Records live. |
 | `--config <file>` | `./memex.config.yml` | Config file path. |
 
