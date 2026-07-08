@@ -41,3 +41,23 @@ export function serializeRecord(frontmatter, body = '') {
   const trimmedBody = body ? `\n${body.replace(/\n+$/, '')}\n` : '\n';
   return `---\n${serialized}---\n${trimmedBody}`;
 }
+
+// Inverse of serializeRecord: split a Record's frontmatter from its (curator-owned) body. Used
+// when editing an existing Record in place — e.g. `tag` — so prose and wikilinks are preserved.
+export function parseRecord(md) {
+  const match = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return { frontmatter: {}, body: md };
+  const frontmatter = yaml.load(match[1]) ?? {};
+  const body = match[2].replace(/^\n/, '').replace(/\n$/, '');
+  return { frontmatter, body };
+}
+
+// Append incoming tags to existing ones, de-duplicated, order preserved. A curator's own tags
+// (added in the .md) always survive; this only ever adds.
+export function mergeTags(existing = [], incoming = []) {
+  const out = [...existing];
+  for (const tag of incoming) {
+    if (!out.includes(tag)) out.push(tag);
+  }
+  return out;
+}

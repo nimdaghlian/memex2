@@ -5,12 +5,19 @@ import { loadConfig } from '../src/config.js';
 import { runProcess } from '../src/commands/process.js';
 import { runUpdate } from '../src/commands/update.js';
 import { runVerify } from '../src/commands/verify.js';
+import { runTag } from '../src/commands/tag.js';
 import { ok, info, warn, err } from '../src/output.js';
 
 const program = new Command();
 
 function config(opts) {
   return loadConfig({ configPath: opts.config });
+}
+
+// Accumulator for repeatable --tag flags: `--tag a --tag b` → ['a', 'b'].
+function collect(value, acc) {
+  acc.push(value);
+  return acc;
 }
 
 function requireMemexId(cfg) {
@@ -42,11 +49,12 @@ program
   .option('--config <file>', 'Path to memex.config.yml')
   .option('--overwrite', 'Replace existing Record/Collection .md files', false)
   .option('--no-parse-date', 'Do not derive schema:dateCreated from filenames')
+  .option('--tag <tag>', 'Add a tag to every Record + Collection (repeatable)', collect, [])
   .action((dir, opts) => {
     try {
       const cfg = config(opts);
       requireMemexId(cfg);
-      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, overwrite: opts.overwrite, parseDate: opts.parseDate });
+      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, overwrite: opts.overwrite, parseDate: opts.parseDate, tags: opts.tag });
       if (s.added.length) info(`added: ${s.added.join(', ')}`);
       ok(`process: ${s.records} record(s), ${s.collection} collection, manifest updated`);
     } catch (e) {
@@ -85,6 +93,23 @@ program
       if (r.ok) ok('verify: clean');
       else info(`verify: ${r.warnings.length} warning(s) — non-fatal`);
       // Warn-only: integrity drift never fails the command.
+    } catch (e) {
+      err(e.message);
+      process.exit(1);
+    }
+  });
+
+program
+  .command('tag')
+  .description("Add tags to every Record of an already-processed directory")
+  .argument('<dir>', 'Processed asset directory whose Records to tag')
+  .requiredOption('--tag <tag>', 'Tag to add (repeatable)', collect, [])
+  .option('--out <dir>', 'Record/Collection output dir (overrides config)')
+  .option('--config <file>', 'Path to memex.config.yml')
+  .action((dir, opts) => {
+    try {
+      const s = runTag({ dir, out: opts.out ?? config(opts).out, tags: opts.tag });
+      ok(`tag: ${s.tagged} record(s) tagged`);
     } catch (e) {
       err(e.message);
       process.exit(1);

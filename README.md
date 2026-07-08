@@ -2,11 +2,11 @@
 
 A local-first, SSG-integrated [Octothorpes Protocol](https://octothorp.es) client for cataloging content-addressed digital assets in a Syncthing-shared **Library** across personally-trusted machines.
 
-Assets and their content-hash identity sync; **Records are local** to each machine and joined across machines by content hash. No ActivityPub/ATProto bridging.
+Assets and their content-hash identity sync; **Records are local** to each machine and joined across machines by content hash.
 
 ## Status
 
-**Wave 1 (the CLI) is built.** `memex process|update|verify` turn a directory of assets into content-addressed Records, Collections, and an in-directory `manifest.json` — a pure artifact generator with no dependency on a running OP, Oxigraph, or network. The OP-index push and 11ty site are later waves. Everything else remains design (spec, OP-core dependency checklist, reference decisions).
+**Wave 1 (the CLI) is built.** `memex process|tag|update|verify` turn a directory of assets into content-addressed Records, Collections, and an in-directory `manifest.json` — a pure artifact generator with no dependency on a running OP, Oxigraph, or network. The OP-index push and 11ty site are later waves. Everything else remains design (spec, OP-core dependency checklist, reference decisions).
 
 ## CLI usage
 
@@ -14,9 +14,10 @@ Assets and their content-hash identity sync; **Records are local** to each machi
 npm install
 cp memex.config.yml.example memex.config.yml   # then set memexId
 
-node bin/memex.js process <dir>   # hash a directory → manifest.json + Records + one Collection
-node bin/memex.js update          # baseline Records for assets peers added (scans the Library)
-node bin/memex.js verify <dir>    # asset-integrity check vs manifest.json (warn-only)
+node bin/memex.js process <dir>       # hash a directory → manifest.json + Records + one Collection
+node bin/memex.js tag <dir> --tag x   # add tags to a processed directory's Records
+node bin/memex.js update              # baseline Records for assets peers added (scans the Library)
+node bin/memex.js verify <dir>        # asset-integrity check vs manifest.json (warn-only)
 
 npm test                          # node --test
 ```

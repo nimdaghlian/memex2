@@ -157,6 +157,7 @@ node bin/memex.js process <dir> [options]
 | `--config <file>` | `./memex.config.yml` | Config file path. |
 | `--overwrite` | off | Replace existing `.md` files instead of skipping them. |
 | `--no-parse-date` | date parsing on | Skip deriving `schema:dateCreated` from filenames. |
+| `--tag <tag>` | none | Seed a tag on every Record and the Collection. Repeatable: `--tag a --tag b`. |
 
 Behavior worth knowing:
 
@@ -165,6 +166,26 @@ Behavior worth knowing:
 - **A baseline Collection is generated once.** Because you'll edit it, `process` won't rewrite an existing Collection. Assets you add on a later run land as Records but aren't auto-appended to the Collection — add those `[[wikilinks]]` yourself, or re-run with `--overwrite` to regenerate the baseline (discarding edits).
 - **Basenames are stable.** A Record's filename is a slug of the asset filename, and it's the wikilink resolution key, so it stays put across runs. If two different-content files slug to the same name, both get a short hash suffix and a warning — no silent overwrite.
 - **Intrinsic facts are computed in one pass** over the bytes: hash, MIME, byte size, and image dimensions (JPEG/PNG/GIF). A dimension that can't be read is omitted, not guessed.
+
+### `tag <dir>`
+
+Add tags to every Record of an already-processed directory. Use this to tag after the fact — `process --tag` seeds tags at generation time; `tag` edits the Records you already have.
+
+```sh
+node bin/memex.js tag <dir> --tag <tag> [--tag <tag> ...]
+```
+
+| Option | Default | Effect |
+|---|---|---|
+| `--tag <tag>` | required | Tag to add. Repeatable. |
+| `--out <dir>` | config `out` | Where the Records live. |
+| `--config <file>` | `./memex.config.yml` | Config file path. |
+
+Behavior worth knowing:
+
+- **Run it after `process`.** It edits the generated `.md` documents, not the assets. Without a `manifest.json` in the directory it errors — there's nothing to tag yet.
+- **Scoped to that directory.** Records are matched to the directory by content hash (each Record's `schema:sha256` against the directory's manifest), so Records from other directories are untouched. Hash-matching is rename-safe.
+- **Body-preserving and additive.** Your curated prose and `[[wikilinks]]` are kept. Tags merge (deduplicated), so running it twice adds nothing new. It only tags the item Records, not the Collection.
 
 ### `update`
 
