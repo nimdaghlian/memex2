@@ -1,9 +1,9 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import yaml from 'js-yaml';
 
 import { MANIFEST_NAME } from '../manifest.js';
-import { allocateBasenames, slug } from '../basename.js';
+import { allocateBasenames, slug, stripExt } from '../basename.js';
 import { buildFrontmatter, serializeRecord } from '../record.js';
 import { buildCollection } from '../collection.js';
 import { ensureDir, itemsDir, collectionsDir, writeFileIfAllowed } from '../generate.js';
@@ -37,15 +37,6 @@ function findManifests(library) {
   return found;
 }
 
-// Turn a manifest item into intrinsic-facts shape for buildFrontmatter (no byte access needed —
-// the peer already computed these; they are deterministic and identical on every Memex).
-function factsFromItem(item) {
-  return {
-    hex: item.hash, ni: item.ni, mimetype: item.mimetype, byteSize: item.byteSize,
-    width: item.width, height: item.height, duration: item.duration,
-  };
-}
-
 // `update`: scan the Library for manifests originatedBy OTHERS; for each hash not already tracked
 // locally, generate a baseline Record + a baseline Collection per new directory (spec §7). Simple
 // and diff-based — no conflict resolution, no two-way anything. Propagates addedBy onto each Item.
@@ -69,12 +60,10 @@ export function runUpdate({ library, out, memexId, now = new Date().toISOString(
 
       const base = basenameFor.get(item.path);
       const frontmatter = buildFrontmatter({
-        facts: factsFromItem(item),
-        filename: item.path,
-        assetUrl: `/assets/${dirName}/${item.path}`,
-        addedBy: manifest.originatedBy,
+        title: stripExt(item.path),
+        ni: item.ni,
+        path: relative(library, join(dir, item.path)),
         uploadDate: item.uploadDate ?? now,
-        dateCreated: item.dateCreated,
         tags: [],
       });
       if (writeFileIfAllowed(join(itemsDir(out), `${base}.md`), serializeRecord(frontmatter, ''), overwrite)) {

@@ -45,8 +45,9 @@ test('update generates baseline Records for a peer\'s untracked assets, with add
   assert.equal(existsSync(join(out, 'items', 'sunset.md')), true);
 
   const fm = yaml.load(readFileSync(join(out, 'items', 'sunset.md'), 'utf8').split('---')[1]);
-  assert.equal(fm['schema:sha256'], 'aaaa1111');
-  assert.equal(fm['memex:addedBy'], 'memex-bob');
+  assert.equal(fm.item, 'ni:///sha-256;aaaa1111');
+  assert.equal(fm.title, 'sunset');
+  assert.equal(fm.path, 'bobs-trip/sunset.jpeg');
 });
 
 test('update ignores manifests I originated', () => {
