@@ -38,19 +38,19 @@ test('runProcess writes a manifest, one Record per asset, and one Collection', (
   assert.equal(existsSync(join(out, 'items', 'two.md')), true);
 });
 
-test('generated Record frontmatter carries the contract fields', () => {
+test('generated Record frontmatter carries the new contract', () => {
   const { dir, out } = setup();
   runProcess({ dir, out, memexId: 'memex-alice', now: NOW });
 
   const md = readFileSync(join(out, 'items', 'one.md'), 'utf8');
   const fm = yaml.load(md.split('---')[1]);
   const expected = hashBytes(readFileSync(join(dir, 'one.png')));
-  assert.equal(fm['schema:sha256'], expected.hex);
+  assert.equal(fm.title, 'one');                 // filename without extension
   assert.equal(fm.item, expected.ni);
-  assert.equal(fm['schema:encodingFormat'], 'image/png');
-  assert.equal(fm['schema:width'], 100);
-  assert.equal(fm['schema:height'], 50);
-  assert.equal(fm['memex:addedBy'], 'memex-alice');
+  assert.equal(fm.path, 'fallen-trees/one.png'); // dirName/filename (no library passed)
+  assert.equal(fm.uploadDate, NOW);
+  assert.deepEqual(fm.tags, []);
+  assert.equal('schema:sha256' in fm, false);
 });
 
 test('the baseline Collection links every Record by basename', () => {

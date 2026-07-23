@@ -1,9 +1,9 @@
 import { existsSync, statSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { basename, join, relative, resolve } from 'node:path';
 
 import { scanAssets } from '../scan.js';
 import { readIntrinsics } from '../intrinsics.js';
-import { allocateBasenames, slug } from '../basename.js';
+import { allocateBasenames, slug, stripExt } from '../basename.js';
 import { extractDate } from '../date.js';
 import { readManifest, writeManifest, itemFromFacts, mergeManifest } from '../manifest.js';
 import { buildFrontmatter, serializeRecord } from '../record.js';
@@ -14,7 +14,7 @@ import { warn } from '../output.js';
 // `process <dir>`: hash the directory's assets → write manifest.json (originatedBy: me) into the
 // dir → generate local Records + one baseline Collection (spec §7). Pushing records to OP is the
 // deferred seam (needs #238) and is NOT part of this wave.
-export function runProcess({ dir, out, memexId, now = new Date().toISOString(), overwrite = false, tags = [], parseDate = true }) {
+export function runProcess({ dir, out, memexId, library, now = new Date().toISOString(), overwrite = false, tags = [], parseDate = true }) {
   if (!existsSync(dir) || !statSync(dir).isDirectory()) {
     throw new Error(`Not a directory: ${dir}`);
   }
@@ -55,14 +55,14 @@ export function runProcess({ dir, out, memexId, now = new Date().toISOString(), 
     seen.add(a.basename);
     members.push(a.basename);
 
-    const assetUrl = `/assets/${dirName}/${a.filename}`;
+    const assetPath = library
+      ? relative(library, join(dir, a.filename))
+      : `${dirName}/${a.filename}`;
     const frontmatter = buildFrontmatter({
-      facts: a.facts,
-      filename: a.filename,
-      assetUrl,
-      addedBy: memexId,
+      title: stripExt(a.filename),
+      ni: a.facts.ni,
+      path: assetPath,
       uploadDate: uploadDates.get(a.filename),
-      dateCreated: a.dateCreated,
       tags,
     });
     const written = writeFileIfAllowed(join(itemsDir(out), `${a.basename}.md`), serializeRecord(frontmatter, ''), overwrite);

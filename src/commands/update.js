@@ -1,15 +1,16 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import yaml from 'js-yaml';
 
 import { MANIFEST_NAME } from '../manifest.js';
-import { allocateBasenames, slug } from '../basename.js';
+import { allocateBasenames, slug, stripExt } from '../basename.js';
 import { buildFrontmatter, serializeRecord } from '../record.js';
 import { buildCollection } from '../collection.js';
 import { ensureDir, itemsDir, collectionsDir, writeFileIfAllowed } from '../generate.js';
+import { niToHex } from '../hash.js';
 
 // The local tracking store, without OP: the set of content hashes for which I already hold a
-// Record (each Record carries schema:sha256). This is what `update` diffs peer manifests against.
+// Record (each Record carries item: ni-URI). This is what `update` diffs peer manifests against.
 function collectLocalHashes(out) {
   const dir = itemsDir(out);
   if (!existsSync(dir)) return new Set();
@@ -17,7 +18,7 @@ function collectLocalHashes(out) {
   for (const name of readdirSync(dir)) {
     if (!name.endsWith('.md')) continue;
     const fm = yaml.load(readFileSync(join(dir, name), 'utf8').split('---')[1] ?? '') ?? {};
-    if (fm['schema:sha256']) hashes.add(fm['schema:sha256']);
+    if (fm.item) hashes.add(niToHex(fm.item));
   }
   return hashes;
 }
@@ -35,15 +36,6 @@ function findManifests(library) {
   };
   if (existsSync(library)) walk(library);
   return found;
-}
-
-// Turn a manifest item into intrinsic-facts shape for buildFrontmatter (no byte access needed —
-// the peer already computed these; they are deterministic and identical on every Memex).
-function factsFromItem(item) {
-  return {
-    hex: item.hash, ni: item.ni, mimetype: item.mimetype, byteSize: item.byteSize,
-    width: item.width, height: item.height, duration: item.duration,
-  };
 }
 
 // `update`: scan the Library for manifests originatedBy OTHERS; for each hash not already tracked
@@ -69,12 +61,10 @@ export function runUpdate({ library, out, memexId, now = new Date().toISOString(
 
       const base = basenameFor.get(item.path);
       const frontmatter = buildFrontmatter({
-        facts: factsFromItem(item),
-        filename: item.path,
-        assetUrl: `/assets/${dirName}/${item.path}`,
-        addedBy: manifest.originatedBy,
+        title: stripExt(item.path),
+        ni: item.ni,
+        path: relative(library, join(dir, item.path)),
         uploadDate: item.uploadDate ?? now,
-        dateCreated: item.dateCreated,
         tags: [],
       });
       if (writeFileIfAllowed(join(itemsDir(out), `${base}.md`), serializeRecord(frontmatter, ''), overwrite)) {

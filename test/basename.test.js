@@ -33,17 +33,29 @@ test('allocateBasenames is deterministic and order-independent', () => {
   assert.equal(b.find(x => x.filename === 'one.jpeg').basename, 'one');
 });
 
-test('distinct-content assets that slug identically are disambiguated by hash suffix', () => {
+test('distinct-content assets that slug identically get deterministic increment suffixes', () => {
   const out = allocateBasenames([
-    { filename: 'photo (1).jpeg', hex: 'deadbeef00' },
-    { filename: 'photo-1.jpeg', hex: 'cafef00d11' },
+    { filename: 'Photo 1.jpeg', hex: 'bbbb' }, // slug "photo-1"
+    { filename: 'photo-1.png', hex: 'aaaa' },  // slug "photo-1"
   ]);
-  // Both slug to "photo-1" but differ in content — no silent overwrite.
-  assert.notEqual(out[0].basename, out[1].basename);
-  assert.equal(out[0].basename, 'photo-1-deadbeef');
-  assert.equal(out[1].basename, 'photo-1-cafef00d');
-  assert.equal(out[0].collision, true);
-  assert.equal(out[1].collision, true);
+  const nameFor = (f) => out.find(o => o.filename === f).basename;
+  // sorted by hash ascending: aaaa = rank 0 → base, bbbb = rank 1 → -2
+  assert.equal(nameFor('photo-1.png'), 'photo-1');
+  assert.equal(nameFor('Photo 1.jpeg'), 'photo-1-2');
+  assert.equal(out.every(o => o.collision), true);
+});
+
+test('increment assignment is stable regardless of input order', () => {
+  const forward = allocateBasenames([
+    { filename: 'Photo 1.jpeg', hex: 'bbbb' }, { filename: 'photo-1.png', hex: 'aaaa' },
+  ]);
+  const reverse = allocateBasenames([
+    { filename: 'photo-1.png', hex: 'aaaa' }, { filename: 'Photo 1.jpeg', hex: 'bbbb' },
+  ]);
+  const nameFor = (r, f) => r.find(o => o.filename === f).basename;
+  assert.equal(nameFor(forward, 'photo-1.png'), 'photo-1');
+  assert.equal(nameFor(reverse, 'photo-1.png'), 'photo-1'); // unchanged by order
+  assert.equal(nameFor(reverse, 'Photo 1.jpeg'), 'photo-1-2');
 });
 
 test('identical-content duplicates share one basename (dedup by hash)', () => {

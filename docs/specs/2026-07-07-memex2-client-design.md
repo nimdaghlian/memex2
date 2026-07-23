@@ -205,4 +205,4 @@ The CLI (greenfield; may reuse `make-gals` logic) lives in this repo alongside t
 - The stable-basename rule for the CLI (slug determinism across re-runs; collision policy at generation time).
 - 11ty wikilink rendering for the human site (plugin vs custom transform) — separate from OP's handler, but needs to resolve `[[…]]` → `/item/<hash>` for navigation.
 - Coverage baseline-diff implementation (how "beyond baseline" is computed cheaply).
-- Client profile file layout (`profile.public.json`) and how it declares the vocabulary (documentRecord fields + ranges) and the `Item` subtype path.
+- Client profile file layout (a single committed `profile.json`; secrets in `.env` only, no public/full split) and how it declares the vocabulary (documentRecord fields + ranges) and the `Item` subtype path.

@@ -50,13 +50,13 @@ program
   .option('--out <dir>', 'Record/Collection output dir (overrides config)')
   .option('--config <file>', 'Path to memex.config.yml')
   .option('--overwrite', 'Replace existing Record/Collection .md files', false)
-  .option('--no-parse-date', 'Do not derive schema:dateCreated from filenames')
+  .option('--no-parse-date', 'Do not derive a date from filenames')
   .option('--tag <tag>', 'Add a tag to every Record + Collection (repeatable)', collect, [])
   .action((dir, opts) => {
     try {
       const cfg = config(opts);
       requireMemexId(cfg);
-      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, overwrite: opts.overwrite, parseDate: opts.parseDate, tags: opts.tag });
+      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, library: cfg.library, overwrite: opts.overwrite, parseDate: opts.parseDate, tags: opts.tag });
       if (s.added.length) info(`added: ${s.added.join(', ')}`);
       ok(`process: ${s.records} record(s), ${s.collection} collection, manifest updated`);
     } catch (e) {
@@ -129,7 +129,7 @@ if (process.argv.slice(2).length === 0) {
   const commands = {
     process: ({ dir, tags }) => {
       requireMemexId(cfg);
-      const s = runProcess({ dir, out: cfg.out, memexId: cfg.memexId, tags });
+      const s = runProcess({ dir, out: cfg.out, memexId: cfg.memexId, library: cfg.library, tags });
       if (s.added.length) info(`added: ${s.added.join(', ')}`);
       ok(`process: ${s.records} record(s), ${s.collection} collection`);
     },

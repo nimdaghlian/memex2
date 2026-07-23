@@ -5,5 +5,5 @@ _site/
 dist/
 make-gals-copy/
 memex.config.yml
-site/
-library/
+site/items/*.md
+site/collections/*.md

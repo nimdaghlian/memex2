@@ -6,7 +6,7 @@ Assets and their content-hash identity sync; **Records are local** to each machi
 
 ## Status
 
-**Wave 1 (the CLI) is built.** `memex process|tag|update|verify` turn a directory of assets into content-addressed Records, Collections, and an in-directory `manifest.json` — a pure artifact generator with no dependency on a running OP, Oxigraph, or network. The OP-index push and 11ty site are later waves. Everything else remains design (spec, OP-core dependency checklist, reference decisions).
+**The CLI and a local 11ty site are built.** `memex process|tag|update|verify` turn a directory of assets into content-addressed Records, Collections, and an in-directory `manifest.json`, and an [Eleventy](https://www.11ty.dev/) site builds those into browsable pages with resolved `[[wikilinks]]` and tag indexes — all with no dependency on a running OP, Oxigraph, or network. The OP-index push is the next wave. Everything else remains design (spec, OP-core dependency checklist, reference decisions).
 
 ## CLI usage
 
@@ -23,10 +23,27 @@ node bin/memex.js verify <dir>        # asset-integrity check vs manifest.json (
 npm test                          # node --test
 ```
 
-`process` writes `manifest.json` *into* the asset directory (the tracked/untracked boundary — it syncs with the assets) and generates `.md` Records + a baseline Collection under the configured `out` dir. Re-running is incremental and idempotent.
+`process` writes `manifest.json` *into* the asset directory (the tracked/untracked boundary — it syncs with the assets) and generates `.md` Records + a baseline Collection under the configured `out` dir (`./site`). Re-running is incremental and idempotent.
+
+## After you process a gallery — view it in the site
+
+`process` generated a website's worth of pages under `site/`. Build and serve them:
+
+```sh
+npm run serve:site
+```
+
+Then open **`http://localhost:8080/`** in a browser — the home page lists your galleries. Click one (e.g. `fallen-trees`) to see the whole gallery, where each image links to its own page at `/items/<name>/`. Leave `serve:site` running and it rebuilds automatically as you edit the `.md` files.
+
+Tags you add to a Record's frontmatter appear at `/tags/<tag>/`, and `[[wikilinks]]` in a Record's body become links between pages.
+
+(To build once without serving: `npm run build:site` → static output in `_site/`.)
+
+New here? [`docs/getting-started.md`](docs/getting-started.md) walks the whole thing end to end in about a minute.
 
 ## Start here
 
+- [`docs/getting-started.md`](docs/getting-started.md) — the one-minute walkthrough: process a gallery and browse it.
 - [`docs/quickstart.md`](docs/quickstart.md) — install the CLI and run `process`/`update`/`verify`, with a full command reference.
 - [`docs/specs/2026-07-07-memex2-client-design.md`](docs/specs/2026-07-07-memex2-client-design.md) — the design source of truth.
 - [`docs/memex2-op-core-dependencies.md`](docs/memex2-op-core-dependencies.md) — OP-core work this build depends on, in priority order.
