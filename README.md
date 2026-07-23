@@ -33,7 +33,7 @@ npm test                          # node --test
 npm run serve:site
 ```
 
-Then open **`http://localhost:8080/collections/<gallery-folder>/`** in a browser — e.g. if you processed `library/fallen-trees`, go to `http://localhost:8080/collections/fallen-trees/`. You'll see the whole gallery, and each image links to its own page at `/items/<name>/`. Leave `serve:site` running and it rebuilds automatically as you edit the `.md` files.
+Then open **`http://localhost:8080/`** in a browser — the home page lists your galleries. Click one (e.g. `fallen-trees`) to see the whole gallery, where each image links to its own page at `/items/<name>/`. Leave `serve:site` running and it rebuilds automatically as you edit the `.md` files.
 
 Tags you add to a Record's frontmatter appear at `/tags/<tag>/`, and `[[wikilinks]]` in a Record's body become links between pages.
 

@@ -1,0 +1,18 @@
+---
+permalink: /
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Memex</title></head>
+<body>
+  <h1>Collections</h1>
+  <ul>
+  {%- for page in collections.all -%}
+    {%- if "/collections/" in page.url %}
+    <li><a href="{{ page.url }}">{{ page.data.title }}</a></li>
+    {%- endif -%}
+  {%- endfor %}
+  </ul>
+</body>
+</html>

@@ -44,7 +44,7 @@ npm run serve:site
 
 ## 6. Find your gallery
 
-Open **http://localhost:8080/collections/fallen-trees/** — the Collection lists every image, each linking to its own page at `/items/<name>/`.
+Open **http://localhost:8080/** — the home page lists your galleries. Click `fallen-trees` to see every image, each linking to its own page at `/items/<name>/`.
 
 Any `[[wikilinks]]` you add to a Record's `.md` body resolve to those pages, and any `tags:` you add show up at `/tags/<tag>/`.
 
