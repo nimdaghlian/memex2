@@ -8,27 +8,30 @@ export function slug(text) {
     .replace(/^-+|-+$/g, '');
 }
 
-function stripExt(filename) {
+export function stripExt(filename) {
   return filename.replace(/\.[^.]+$/, '');
 }
 
-// Assign a stable basename to each asset. Collision policy (plan Phase 2 — "no silent
-// overwrite"): if two assets with DISTINCT content hash slug to the same base, both are
-// disambiguated with a short content-hash suffix and flagged. Assets that share a hash are the
-// same Item (content-addressed) and keep their plain slug — writing the same Record twice is
-// idempotent. The suffix is content-derived, so a basename never depends on directory order.
+// Assign a stable basename per asset. Distinct-content assets that slug identically collide;
+// they're disambiguated by INCREMENT (name, name-2, name-3…), assigned by stable hash order so a
+// name never wanders between runs. Same-hash assets are the same Item → same basename (collapse).
+// Every collider is flagged for a human to disambiguate at the source.
 export function allocateBasenames(assets) {
-  const distinctHashesBySlug = new Map();
+  const hashesBySlug = new Map();
   for (const a of assets) {
     const s = slug(stripExt(a.filename));
-    if (!distinctHashesBySlug.has(s)) distinctHashesBySlug.set(s, new Set());
-    distinctHashesBySlug.get(s).add(a.hex);
+    if (!hashesBySlug.has(s)) hashesBySlug.set(s, new Set());
+    hashesBySlug.get(s).add(a.hex);
   }
-
+  const rank = new Map(); // `${slug}#${hex}` → increment rank
+  for (const [s, set] of hashesBySlug) {
+    [...set].sort().forEach((hex, i) => rank.set(`${s}#${hex}`, i));
+  }
   return assets.map((a) => {
     const s = slug(stripExt(a.filename));
-    const collision = distinctHashesBySlug.get(s).size > 1;
-    const basename = collision ? `${s}-${a.hex.slice(0, 8)}` : s;
+    const collision = hashesBySlug.get(s).size > 1;
+    const r = rank.get(`${s}#${a.hex}`);
+    const basename = r === 0 ? s : `${s}-${r + 1}`;
     return { ...a, basename, collision };
   });
 }
