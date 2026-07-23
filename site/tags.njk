@@ -1,0 +1,22 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  # Eleventy adds a few internal collections ("all"); skip them.
+  filter: ['all']
+permalink: "/tags/{{ tag | slugify }}/"
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tag: {{ tag }}</title></head>
+<body>
+  <h1>#{{ tag }}</h1>
+  <ul>
+  {% for item in collections[tag] %}
+    <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
+  {% endfor %}
+  </ul>
+</body>
+</html>
