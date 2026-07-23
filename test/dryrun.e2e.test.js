@@ -37,11 +37,20 @@ test('CLI generates the new contract; Eleventy builds pages with resolved links'
     cpSync(join(REPO, 'site', '_lib'), join(root, 'site', '_lib'), { recursive: true });
     mkdirSync(join(root, 'site', 'items'), { recursive: true });
     cpSync(join(REPO, 'site', 'items', 'items.11tydata.js'), join(root, 'site', 'items', 'items.11tydata.js'));
+    mkdirSync(join(root, 'site', 'collections'), { recursive: true });
+    cpSync(join(REPO, 'site', 'collections', 'collections.11tydata.js'), join(root, 'site', 'collections', 'collections.11tydata.js'));
     execFileSync('npx', ['@11ty/eleventy'], { cwd: root });
 
     assert.equal(existsSync(join(root, '_site', 'items', 'redwoods', 'index.html')), true);
     const html = readFileSync(join(root, '_site', 'items', 'redwoods', 'index.html'), 'utf8');
     assert.match(html, /href="\/items\/ferns\/"/);
+
+    // The CLI also generates a baseline Collection for the processed directory ("forest"),
+    // whose body links each member Record by basename — that page's wikilinks must resolve too.
+    assert.equal(existsSync(join(root, '_site', 'collections', 'forest', 'index.html')), true);
+    const collectionHtml = readFileSync(join(root, '_site', 'collections', 'forest', 'index.html'), 'utf8');
+    assert.match(collectionHtml, /href="\/items\/redwoods\/"/);
+    assert.match(collectionHtml, /href="\/items\/ferns\/"/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

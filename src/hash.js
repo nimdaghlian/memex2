@@ -14,8 +14,9 @@ function fromBase64Url(str) {
 }
 
 // One helper, both encodings. The digest is expressed twice on purpose (spec §4):
-//   hex → the readable `/item/<hex>` permalink and the `schema:sha256` literal
-//   ni  → the `ni:///sha-256;<base64url>` identity URI / Item-edge target (federation join key)
+//   hex → exposed via the manifest (readable, diffable)
+//   ni  → the `ni:///sha-256;<base64url>` identity URI / Item-edge target (federation join key),
+//         carried in the Record's `item` frontmatter field
 export function hashBytes(bytes) {
   const digest = createHash('sha256').update(bytes).digest();
   return { hex: digest.toString('hex'), ni: NI_PREFIX + toBase64Url(digest) };
