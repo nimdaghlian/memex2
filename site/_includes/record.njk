@@ -4,6 +4,7 @@
 <body>
   <main data-item="{{ item }}">
     <h1>{{ title }}</h1>
+    {% if path %}<p class="item-file">File: <a href="{{ site.libraryPrefix }}{{ path }}">{{ path }}</a></p>{% endif %}
     {% if tags and tags.length %}<ul class="tags">{% for t in tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
     {{ content | safe }}
   </main>
