@@ -56,7 +56,7 @@ program
     try {
       const cfg = config(opts);
       requireMemexId(cfg);
-      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, overwrite: opts.overwrite, parseDate: opts.parseDate, tags: opts.tag });
+      const s = runProcess({ dir, out: opts.out ?? cfg.out, memexId: cfg.memexId, library: cfg.library, overwrite: opts.overwrite, parseDate: opts.parseDate, tags: opts.tag });
       if (s.added.length) info(`added: ${s.added.join(', ')}`);
       ok(`process: ${s.records} record(s), ${s.collection} collection, manifest updated`);
     } catch (e) {
@@ -129,7 +129,7 @@ if (process.argv.slice(2).length === 0) {
   const commands = {
     process: ({ dir, tags }) => {
       requireMemexId(cfg);
-      const s = runProcess({ dir, out: cfg.out, memexId: cfg.memexId, tags });
+      const s = runProcess({ dir, out: cfg.out, memexId: cfg.memexId, library: cfg.library, tags });
       if (s.added.length) info(`added: ${s.added.join(', ')}`);
       ok(`process: ${s.records} record(s), ${s.collection} collection`);
     },
