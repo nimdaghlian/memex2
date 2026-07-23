@@ -57,6 +57,16 @@ A **Memex-defined HTML harmonizer** (declared in `profile.json`, authored agains
 
 The `@id` is the permalink (set by `indexSource(url, { content })`). The `profile.json` declares `relationshipSubtypes: [{ type: "Item", label: "…", path: "items" }]`.
 
+## Tags are dual-use, not a conflict
+
+The frontmatter `tags` key drives three consumers from one authoring act, and we keep all three:
+
+- **Obsidian** — native tag pane / `tag:` search (the curator's editing surface).
+- **Eleventy** — auto-creates a collection per tag; we render **tag-index pages** (`/tags/<slug>/`) with our own template. Presentation only.
+- **OP** (Chunk 2) — the harmonizer emits each tag as a **term octothorpe** (Record→Term edge).
+
+The payoff is the graph join OP alone can do: because tags become term edges and wikilinks become link edges, OP can **combine** them — "members of Collection X also tagged `winter`", "everything tagged `climate` that links here", "Collections whose members share a tag." Eleventy renders flat tag lists; OP reasons over tag + link + Collection-membership together. Same `tags`/`[[wikilinks]]` authoring feeds both; nothing is duplicated. (Earlier we considered suppressing Eleventy's tag collections with `eleventyExcludeFromCollections`; we instead embrace them — see the Chunk 1 plan Task 6b.)
+
 ## Implementation in two chunks
 
 **Chunk 1 — the dry run (no OP).** CLI + 11ty produce everything *ready for OP* without any OP dependency: the `.md` Records (revised contract), the in-directory manifests, and the built 11ty site (permalinks from slugs, wikilinks resolved to anchors, the OP-ready markup rendered into the HTML). Nothing is sent to OP. This is the plan `2026-07-23-chunk1-dry-run.md`.
