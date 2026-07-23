@@ -7,9 +7,10 @@ import { allocateBasenames, slug, stripExt } from '../basename.js';
 import { buildFrontmatter, serializeRecord } from '../record.js';
 import { buildCollection } from '../collection.js';
 import { ensureDir, itemsDir, collectionsDir, writeFileIfAllowed } from '../generate.js';
+import { niToHex } from '../hash.js';
 
 // The local tracking store, without OP: the set of content hashes for which I already hold a
-// Record (each Record carries schema:sha256). This is what `update` diffs peer manifests against.
+// Record (each Record carries item: ni-URI). This is what `update` diffs peer manifests against.
 function collectLocalHashes(out) {
   const dir = itemsDir(out);
   if (!existsSync(dir)) return new Set();
@@ -17,7 +18,7 @@ function collectLocalHashes(out) {
   for (const name of readdirSync(dir)) {
     if (!name.endsWith('.md')) continue;
     const fm = yaml.load(readFileSync(join(dir, name), 'utf8').split('---')[1] ?? '') ?? {};
-    if (fm['schema:sha256']) hashes.add(fm['schema:sha256']);
+    if (fm.item) hashes.add(niToHex(fm.item));
   }
   return hashes;
 }

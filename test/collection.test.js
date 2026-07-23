@@ -9,7 +9,6 @@ test('buildCollection renders a Record whose body is [[wikilinks]] to each membe
 
   const fm = yaml.load(md.split('---')[1]);
   assert.equal(fm.title, 'Fallen Trees');
-  assert.equal(fm['memex:addedBy'], 'memex-alice');
   assert.deepEqual(fm.tags, ['trees']);
 
   assert.match(md, /- \[\[img-1758\]\]/);
@@ -20,4 +19,12 @@ test('buildCollection with no members still produces valid frontmatter', () => {
   const md = buildCollection({ name: 'Empty', members: [], addedBy: 'me' });
   const fm = yaml.load(md.split('---')[1]);
   assert.equal(fm.title, 'Empty');
+});
+
+test('buildCollection frontmatter is title + tags only (no prefixed keys)', () => {
+  const md = buildCollection({ name: 'Fallen Trees', members: ['a', 'b'], addedBy: 'memex-alice', tags: ['trees'] });
+  const fm = yaml.load(md.split('---')[1]);
+  assert.equal(fm.title, 'Fallen Trees');
+  assert.equal('memex:addedBy' in fm, false);
+  assert.deepEqual(fm.tags, ['trees']);
 });

@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { readManifest } from '../manifest.js';
 import { parseRecord, serializeRecord, mergeTags } from '../record.js';
 import { itemsDir } from '../generate.js';
+import { niToHex } from '../hash.js';
 
 // `tag <dir>`: add tags to every Record of an already-processed directory. Operates on the
 // generated .md documents, not the assets — so run it after `process`. Records are matched by
@@ -24,7 +25,9 @@ export function runTag({ dir, out, tags = [] }) {
       if (!name.endsWith('.md')) continue;
       const path = join(idir, name);
       const { frontmatter, body } = parseRecord(readFileSync(path, 'utf8'));
-      if (!hashes.has(frontmatter['schema:sha256'])) continue;
+      if (!frontmatter.item) continue;
+      const hex = niToHex(frontmatter.item);
+      if (!hashes.has(hex)) continue;
 
       const before = frontmatter.tags ?? [];
       const merged = mergeTags(before, tags);
