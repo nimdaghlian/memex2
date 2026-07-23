@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>{{ title }}</title></head>
+<body>
+  <main data-item="{{ item }}">
+    <h1>{{ title }}</h1>
+    {% if tags and tags.length %}<ul class="tags">{% for t in tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+    {{ content | safe }}
+  </main>
+</body>
+</html>
