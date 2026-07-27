@@ -7,3 +7,4 @@ make-gals-copy/
 memex.config.yml
 site/items/*.md
 site/collections/*.md
+site/library/

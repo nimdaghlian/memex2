@@ -6,6 +6,13 @@ export default function (eleventyConfig) {
   // default — WITHOUT this line the build silently writes 0 files. (node_modules stays ignored.)
   eleventyConfig.setUseGitIgnore(false);
 
+  // Serve the asset Library. It lives at site/library/ (synced by a separate service, not git)
+  // and is copied verbatim to _site/library/ → reachable at /library/<gallery>/<file>. This is
+  // what makes each Record's asset link resolvable in the browser (see site/_data/site.json's
+  // libraryPrefix = "/library/"). Images aren't a template format, so without this passthrough
+  // Eleventy would ignore them.
+  eleventyConfig.addPassthroughCopy({ 'site/library': 'library' });
+
   // Records and Collections share ONE flat basename→url namespace (last-writer-wins if an item
   // and a collection ever slug identically — an acceptable edge for this chunk).
   const isRecord = (p) => p.includes('/items/') || p.includes('/collections/');
