@@ -1,18 +1,58 @@
 ---
+layout: base.njk
+title: Memex
+pageClass: wide
 permalink: /
 eleventyExcludeFromCollections: true
 ---
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><title>Memex</title></head>
-<body>
-  <h1>Collections</h1>
-  <ul>
-  {%- for page in collections.all -%}
-    {%- if "/collections/" in page.url %}
-    <li><a href="{{ page.url }}">{{ page.data.title }}</a></li>
-    {%- endif -%}
-  {%- endfor %}
-  </ul>
-</body>
-</html>
+{% import "directory.njk" as dir %}
+
+<section class="section">
+      {% ascii memex.id %}
+</section>
+
+{#- Featured: whatever the curator tagged `featured`, Item or Collection alike, newest first.
+    Tagging is the one curatorial primitive, so the front page is curated the same way as
+    everything else — no separate "pinned" mechanism. -#}
+{%- set featured = collections.featured | recent(3) %}
+{%- if featured.length %}
+<section class="section">
+  <h6>Featured</h6>
+  <div class="rails rails-3" style="margin-top: var(--sp-3); border-top: var(--rule); padding-top: var(--sp-4)">
+    {%- for entry in featured %}
+    {%- set cover = entry.data | poster %}
+    <div>
+      <div class="meta">
+        {{- "Collection" if "/collections/" in entry.url else "Item" -}}
+        {%- if entry.data.uploadDate %} · {{ entry.data.uploadDate | day }}{% endif -%}
+      </div>
+      {%- if cover %}
+      <a href="{{ entry.url }}" class="card-thumb" style="margin: var(--sp-3) 0 0">
+        <img src="{{ cover | assetUrl(site.libraryPrefix) }}" alt="" loading="lazy">
+      </a>
+      {%- endif %}
+      <h3 style="margin: var(--sp-2) 0 var(--sp-3)">{{ entry.data.title }}</h3>
+      {{ dir.body(entry) }}
+      <a class="link-arrow" href="{{ entry.url }}">Open</a>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="section">
+  <h6>All collections</h6>
+  <div class="grid" style="margin-top: var(--sp-3)">
+    {%- for entry in collections.all | collectionRecords %}
+    <a class="card" href="{{ entry.url }}">
+      <div class="card-thumb">
+        {%- if entry.data.cover %}<img src="{{ entry.data.cover | assetUrl(site.libraryPrefix) }}" alt="" loading="lazy">{% endif %}
+      </div>
+      <div class="card-title">{{ entry.data.title }}</div>
+      <div class="card-meta">
+        {{- entry.data.tags | join(" · ") if entry.data.tags and entry.data.tags.length else "untagged" -}}
+      </div>
+    </a>
+    {%- endfor %}
+  </div>
+</section>

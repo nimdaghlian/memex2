@@ -1,0 +1,19 @@
+---
+layout: base.njk
+title: All records
+permalink: /items/
+eleventyExcludeFromCollections: true
+---
+{% import "directory.njk" as dir %}
+
+<header class="section">
+  <h6 class="meta">Index</h6>
+  <h1>All records</h1>
+</header>
+
+{#- Every Item Record on this Memex, whatever Collection introduced it. Passing collections.all
+    turns on the per-row "In" list, which is the point of this view: it is the only listing where
+    a Record's membership isn't already implied by the page you're standing on. -#}
+<section class="section flush-top">
+  {{ dir.rows(collections.all | itemRecords, site.libraryPrefix, collections.all) }}
+</section>

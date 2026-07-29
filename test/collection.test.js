@@ -15,6 +15,14 @@ test('buildCollection renders a Record whose body is [[wikilinks]] to each membe
   assert.match(md, /- \[\[belmont\]\]/);
 });
 
+test('buildCollection separates a description area from the membership dump with a rule', () => {
+  const md = buildCollection({ name: 'Fallen Trees', members: ['a', 'b'], addedBy: 'me' });
+  const body = md.split(/^---$/m).slice(2).join('---');
+  const [description, members] = body.split(/^---$/m);
+  assert.equal(members.includes('[[a]]'), true);
+  assert.equal(description.includes('[[a]]'), false);
+});
+
 test('buildCollection with no members still produces valid frontmatter', () => {
   const md = buildCollection({ name: 'Empty', members: [], addedBy: 'me' });
   const fm = yaml.load(md.split('---')[1]);

@@ -1,0 +1,60 @@
+{# lewk's three-column .dir row, in Memex terms: identity | asset | curation.
+   Shared by every listing page (a Collection, a tag index) so the two never drift.
+   `entries` is an array of Eleventy page objects for Records. #}
+
+{% macro icon(category) %}
+<svg class="dir-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+  {%- if category == "video" -%}
+    <rect x="2" y="5" width="20" height="14"/><path d="M10 9l5 3-5 3z"/>
+  {%- elif category == "audio" -%}
+    <path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/>
+  {%- else -%}
+    <path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/>
+  {%- endif -%}
+</svg>
+{% endmacro %}
+
+{#- A Collection row shows only its description half — never its link dump, which would nest a
+    directory inside a directory. An Item Record's whole body is its content. -#}
+{% macro body(entry) %}
+{%- if "/collections/" in entry.url -%}
+  {{- entry.templateContent | description | safe -}}
+{%- else -%}
+  {{- entry.templateContent | safe -}}
+{%- endif -%}
+{% endmacro %}
+
+{#- `allPages` is optional: pass collections.all to also show which Collections link each entry.
+    A Collection page or tag index leaves it out — there the membership is already the context. -#}
+{% macro rows(entries, libraryPrefix, allPages) %}
+{%- for entry in entries %}
+{%- set poster = entry.data | poster %}
+<div class="dir">
+  <div>
+    <a href="{{ entry.url }}">{{ entry.data.title }}</a>
+    {%- if entry.data.tags and entry.data.tags.length %}
+    <div class="cluster" style="margin-top: var(--sp-2)">
+      {%- for t in entry.data.tags %}<a class="tag" href="/tags/{{ t | slugify }}/">{{ t }}</a>{% endfor %}
+    </div>
+    {%- endif %}
+    {%- if allPages %}
+    {%- set inCollections = entry | linkingCollections(allPages) %}
+    {%- if inCollections.length %}
+    <div class="meta" style="margin-top: var(--sp-2)">In</div>
+    <div class="cluster">
+      {%- for c in inCollections %}<a href="{{ c.url }}">{{ c.data.title }}</a>{% endfor %}
+    </div>
+    {%- endif %}
+    {%- endif %}
+  </div>
+  <div>
+    {%- if poster %}
+    <a class="dir-preview" href="{{ entry.url }}"><img src="{{ poster | assetUrl(libraryPrefix) }}" alt="{{ entry.data.title }}" loading="lazy"></a>
+    {%- elif entry.data.path %}
+    <a class="dir-preview" href="{{ entry.url }}" title="{{ entry.data.path }}">{{ icon(entry.data.path | mediaCategory) }}</a>
+    {%- endif %}
+  </div>
+  <div>{{ body(entry) }}</div>
+</div>
+{%- endfor %}
+{% endmacro %}

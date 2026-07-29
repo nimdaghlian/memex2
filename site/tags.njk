@@ -1,4 +1,7 @@
 ---
+layout: base.njk
+eleventyComputed:
+  title: "#{{ tag }}"
 pagination:
   data: collections
   size: 1
@@ -8,15 +11,13 @@ pagination:
 permalink: "/tags/{{ tag | slugify }}/"
 eleventyExcludeFromCollections: true
 ---
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><title>Tag: {{ tag }}</title></head>
-<body>
+{% import "directory.njk" as dir %}
+
+<header class="section">
+  <h6 class="meta">Tag</h6>
   <h1>#{{ tag }}</h1>
-  <ul>
-  {% for item in collections[tag] %}
-    <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
-  {% endfor %}
-  </ul>
-</body>
-</html>
+</header>
+
+<section class="section flush-top">
+  {{ dir.rows(collections[tag], site.libraryPrefix) }}
+</section>

@@ -1,12 +1,82 @@
-<!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><title>{{ title }}</title></head>
-<body>
-  <main data-item="{{ item }}">
-    <h1>{{ title }}</h1>
-    {% if path %}<p class="item-file">File: <a href="{{ site.libraryPrefix }}{{ path }}">{{ path }}</a></p>{% endif %}
-    {% if tags and tags.length %}<ul class="tags">{% for t in tags %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
-    {{ content | safe }}
-  </main>
-</body>
-</html>
+---
+layout: base.njk
+---
+{% import "directory.njk" as dir %}
+
+<header class="section">
+  <h1>{{ title }}</h1>
+</header>
+
+{#- Two thirds asset + curation, one third facts, split by a hairline. The Item hub itself asserts
+    nothing (spec §2) — everything in the aside is asserted BY this Record about it. -#}
+<div class="record sidebar sidebar--right sidebar--ruled" data-item="{{ item }}">
+  <div class="stack">
+    {%- set poster = page.data | poster %}
+    {%- if path or poster %}
+    {#- The poster stands in for the asset when the asset can't show itself — an optional `cover`
+        on a PDF or an audio file. The link always points at the real bytes. -#}
+    <figure class="record-media">
+      {%- if poster %}
+      <a href="{{ site.libraryPrefix }}{{ path }}"><img src="{{ poster | assetUrl(site.libraryPrefix) }}" alt="{{ title }}"></a>
+      {%- else %}
+      <a href="{{ site.libraryPrefix }}{{ path }}">{{ dir.icon(path | mediaCategory) }}</a>
+      {%- endif %}
+    </figure>
+    {%- endif %}
+
+<div class="grid" style="font-size: var(--fs-1);">
+    {%- if path %}
+    <div>
+      <div class="meta">File</div>
+      <div><a href="{{ site.libraryPrefix }}{{ path }}">{{ path }}</a></div>
+    </div>
+    <div>
+      <div class="meta">Format</div>
+      <div>{{ path | mime or "unknown" }}</div>
+    </div>
+    {%- endif %}
+
+    {%- if uploadDate %}
+    <div>
+      <div class="meta">Added</div>
+      <div>{{ uploadDate | day }}</div>
+    </div>
+    {%- endif %}
+
+    {%- if item %}
+    <div>
+      <div class="meta">Item</div>
+      {#- The content hash is the identity and the federation join key — the one fact that is the
+          same on every Memex, so it gets shown verbatim rather than prettified. -#}
+      <div class="mono small record-id">{{ item }}</div>
+    </div>
+    {%- endif %}
+</div>
+
+
+
+
+  </div>
+
+  <aside class="stack">
+    {%- if tags and tags.length %}
+    <div>
+      <div class="meta">Tags</div>
+      <div class="cluster">{% for t in tags %}<a class="tag" href="/tags/{{ t | slugify }}/">{{ t }}</a>{% endfor %}</div>
+    </div>
+    {%- endif %}
+
+    {%- set inCollections = page | linkingCollections(collections.all) %}
+    {%- if inCollections.length %}
+    <div>
+      <div class="meta">Collections</div>
+      <div class="stack-tight">
+        {%- for c in inCollections %}<div><a href="{{ c.url }}">{{ c.data.title }}</a></div>{% endfor %}
+      </div>
+    </div>
+    {%- endif %}
+    {%- if content | trim %}
+    <div class="prose left">{{ content | safe }}</div>
+    {%- endif %}
+  </aside>
+</div>

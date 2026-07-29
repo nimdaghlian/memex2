@@ -1,0 +1,36 @@
+---
+layout: base.njk
+---
+{% import "directory.njk" as dir %}
+
+{#- Above the rule: the Collection's own content, rendered as written (wikilinks included).
+    Below it: the membership link dump, which becomes the directory rows. -#}
+{%- set prose = content | description %}
+
+<header class="section">
+  <!--<h6 class="meta">Collection</h6>-->
+  {%- if cover %}
+  {#- Optional frontmatter `cover`: a Library-relative asset path (or an absolute URL). Purely
+      presentational — it makes no claim about the Collection, so it stays out of OP. -#}
+  <div class="collection-cover"><img src="{{ cover | assetUrl(site.libraryPrefix) }}" alt=""></div>
+  {%- endif %}
+  <h1>{{ title }}</h1>
+  {%- if tags and tags.length or prose %}
+  {#- .row wants exactly two children — tags label, description content — so both cells are
+      always emitted even when one is empty, or the grid loses its alignment. -#}
+  <div class="row bare">
+    <div class="label">
+      {%- if tags and tags.length %}
+      <div class="cluster">
+        {%- for t in tags %}<a class="tag" href="/tags/{{ t | slugify }}/">{{ t }}</a>{% endfor %}
+      </div>
+      {%- endif %}
+    </div>
+    <div class="prose left">{{ prose | safe }}</div>
+  </div>
+  {%- endif %}
+</header>
+
+<section class="section flush-top">
+  {{ dir.rows(page.rawInput | wikilinkMembers(collections.all), site.libraryPrefix) }}
+</section>

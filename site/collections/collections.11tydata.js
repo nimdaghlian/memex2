@@ -1,4 +1,4 @@
 export default {
-  layout: 'record.njk',
+  layout: 'listing.njk',
   permalink: '/collections/{{ page.fileSlug }}/',
 };

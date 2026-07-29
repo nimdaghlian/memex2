@@ -49,13 +49,13 @@ export function sessionHeader({ out, memexId, curatorName }) {
 
 function printMenu(out) {
   out('\n');
-  out('  1) Process a directory\n');
-  out('  2) Tag a directory\n');
-  out('  3) Update from peers\n');
-  out('  4) Verify a directory\n');
-  out('  5) Create config\n');
-  out('  6) Help\n');
-  out('  7) Quit\n\n');
+  out('  P) Process a directory\n');
+  out('  T) Tag a directory\n');
+  out('  U) Update from peers\n');
+  out('  V) Verify a directory\n');
+  out('  C) Create config\n');
+  out('  H) Help\n');
+  out('  Q) Quit\n\n');
 }
 
 // List the sub-directories of baseDir (the Library, where asset directories live) and let the
@@ -138,16 +138,16 @@ export async function run({ ask, out, cwd = process.cwd(), libraryDir, commands,
     printMenu(out);
     const answer = await ask('> ');
     if (answer === null) return; // EOF — nothing more to read
-    const choice = answer.trim();
+    const choice = answer.toUpperCase();
     try {
       switch (choice) {
-        case '1': await doProcess({ ask, out, cwd, libraryDir: base, commands }); break;
-        case '2': await doTag({ ask, out, cwd, libraryDir: base, commands }); break;
-        case '3': commands.update({}); break;
-        case '4': await doVerify({ ask, out, cwd, libraryDir: base, commands }); break;
-        case '5': await doCreateConfig({ ask, commands }); break;
-        case '6': if (helpFn) helpFn(); else commands.help({}); out('\n'); break;
-        case '7': return;
+        case 'P': await doProcess({ ask, out, cwd, libraryDir: base, commands }); break;
+        case 'T': await doTag({ ask, out, cwd, libraryDir: base, commands }); break;
+        case 'U': commands.update({}); break;
+        case 'V': await doVerify({ ask, out, cwd, libraryDir: base, commands }); break;
+        case 'C': await doCreateConfig({ ask, commands }); break;
+        case 'H': if (helpFn) helpFn(); else commands.help({}); out('\n'); break;
+        case 'Q': return;
         default: out('  Please enter 1–7.\n');
       }
     } catch (e) {

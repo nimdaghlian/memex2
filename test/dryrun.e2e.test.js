@@ -35,6 +35,10 @@ test('CLI generates the new contract; Eleventy builds pages with resolved links'
     cpSync(join(REPO, 'eleventy.config.js'), join(root, 'eleventy.config.js'));
     cpSync(join(REPO, 'site', '_includes'), join(root, 'site', '_includes'), { recursive: true });
     cpSync(join(REPO, 'site', '_lib'), join(root, 'site', '_lib'), { recursive: true });
+    cpSync(join(REPO, 'site', '_assets'), join(root, 'site', '_assets'), { recursive: true });
+    // The config derives each row's media category from the CLI's own MIME table (spec §4).
+    mkdirSync(join(root, 'src'), { recursive: true });
+    cpSync(join(REPO, 'src', 'mime.js'), join(root, 'src', 'mime.js'));
     mkdirSync(join(root, 'site', 'items'), { recursive: true });
     cpSync(join(REPO, 'site', 'items', 'items.11tydata.js'), join(root, 'site', 'items', 'items.11tydata.js'));
     mkdirSync(join(root, 'site', 'collections'), { recursive: true });

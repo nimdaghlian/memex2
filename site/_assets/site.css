@@ -1,0 +1,79 @@
+/* Memex overlay — loaded after lewk.css so everything here can lean on its tokens.
+   Keep lewk.css pristine; site-specific chrome lives only in this file. */
+
+/* Directory listings (Collections, tag indexes). The middle column of lewk's .dir carries the
+   asset itself: content-addressed bytes are the point, so the preview is the row's evidence.
+   Hairline framing only — no cards, no shadows. */
+.dir-preview {
+  display: block;
+  padding: var(--sp-2);
+}
+.dir-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 15rem;
+  object-fit: contain;
+  object-position: left center;
+}
+.dir-icon {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  color: var(--muted-color);
+}
+
+/* Item Record page. lewk's .sidebar--right caps its aside in rem, which leaves the asset with
+   whatever is left over; here the asset IS the page, so the split is a fixed 2:1 instead. */
+@media (min-width: 800px) {
+  .record.sidebar--right { grid-template-columns: 2fr 1fr; }
+}
+
+/* Unlike a .feature-media thumbnail, a Record's asset is never cropped — this page is the one
+   place the bytes are shown whole. Buffer tint stands in for the letterboxing. */
+.record-media {
+  margin: 0;
+  background: var(--buffer);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+}
+.record-media img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  height: auto;
+}
+.record-media .dir-icon {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* The CLI's figlet banner, on the page. Always monospace regardless of the active font — the
+   glyph grid IS the art — and scaled down so a wide font like Slant Relief fits a narrow screen. */
+.ascii {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(0.28rem, 1.15vw, 0.8rem);
+  line-height: 1.05;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  overflow-x: visible;
+  white-space: pre;
+}
+
+/* Optional Collection cover — a wide band above the title, cropped like a masthead rather than
+   letterboxed: it's decoration, not the asset itself. */
+.collection-cover {
+  aspect-ratio: 3 / 1;
+  background: var(--buffer);
+  overflow: hidden;
+  margin-bottom: var(--sp-4);
+}
+.collection-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* The ni: URI is one long unbreakable token; let it wrap rather than widen the column. */
+.record-id { overflow-wrap: anywhere; }

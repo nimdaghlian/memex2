@@ -10,6 +10,13 @@ export function keyOf(label) {
   return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+// The membership reading of the same syntax: a Collection's value IS its link set (spec §3), so
+// listing templates derive their rows from the [[links]] the curator wrote, in authored order.
+// Labels come back verbatim; callers key them through keyOf().
+export function extractWikilinks(text) {
+  return [...String(text).matchAll(WIKILINK)].map((m) => m[1].trim());
+}
+
 export function resolveWikilinks(text, urlFor) {
   const unresolved = [];
   const out = String(text).replace(WIKILINK, (whole, label) => {
