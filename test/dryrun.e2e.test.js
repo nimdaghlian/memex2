@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, existsSync, readFileSync, cpSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, existsSync, readFileSync, cpSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -36,9 +36,14 @@ test('CLI generates the new contract; Eleventy builds pages with resolved links'
     cpSync(join(REPO, 'site', '_includes'), join(root, 'site', '_includes'), { recursive: true });
     cpSync(join(REPO, 'site', '_lib'), join(root, 'site', '_lib'), { recursive: true });
     cpSync(join(REPO, 'site', '_assets'), join(root, 'site', '_assets'), { recursive: true });
-    // The config derives each row's media category from the CLI's own MIME table (spec §4).
+    // The config derives each row's media category from the CLI's own MIME table (spec §4), and
+    // reads memex.config.yml for the ASCII banner's memexId.
     mkdirSync(join(root, 'src'), { recursive: true });
-    cpSync(join(REPO, 'src', 'mime.js'), join(root, 'src', 'mime.js'));
+    for (const f of ['mime.js', 'config.js']) cpSync(join(REPO, 'src', f), join(root, 'src', f));
+    cpSync(join(REPO, 'site', '_data'), join(root, 'site', '_data'), { recursive: true });
+    // eleventy.config.js imports real packages (figlet, js-yaml); the temp root has no install of
+    // its own, so borrow the repo's.
+    symlinkSync(join(REPO, 'node_modules'), join(root, 'node_modules'), 'dir');
     mkdirSync(join(root, 'site', 'items'), { recursive: true });
     cpSync(join(REPO, 'site', 'items', 'items.11tydata.js'), join(root, 'site', 'items', 'items.11tydata.js'));
     mkdirSync(join(root, 'site', 'collections'), { recursive: true });
