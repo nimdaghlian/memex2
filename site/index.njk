@@ -28,7 +28,7 @@ eleventyExcludeFromCollections: true
       </div>
       {%- if cover %}
       <a href="{{ entry.url }}" class="card-thumb" style="margin: var(--sp-3) 0 0">
-        <img src="{{ cover | assetUrl(site.libraryPrefix) }}" alt="" loading="lazy">
+        <img src="{{ cover | assetUrl(site) }}" alt="" loading="lazy">
       </a>
       {%- endif %}
       <h3 style="margin: var(--sp-2) 0 var(--sp-3)">{{ entry.data.title }}</h3>
@@ -46,7 +46,7 @@ eleventyExcludeFromCollections: true
     {%- for entry in collections.all | collectionRecords %}
     <a class="card" href="{{ entry.url }}">
       <div class="card-thumb">
-        {%- if entry.data.cover %}<img src="{{ entry.data.cover | assetUrl(site.libraryPrefix) }}" alt="" loading="lazy">{% endif %}
+        {%- if entry.data.cover %}<img src="{{ entry.data.cover | assetUrl(site) }}" alt="" loading="lazy">{% endif %}
       </div>
       <div class="card-title">{{ entry.data.title }}</div>
       <div class="card-meta">

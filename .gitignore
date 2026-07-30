@@ -8,3 +8,4 @@ memex.config.yml
 site/items/*.md
 site/collections/*.md
 site/library/
+.obsidian/workspace.json
