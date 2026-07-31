@@ -1,0 +1,9 @@
+---
+title: lacan-four-fundamentals-of-psychoanalysis
+item: ni:///sha-256;wZ_D0MAccT7x7K1VGyXhzzx2I54OptNLUj-DCP2Bev4
+path: Julia's Shelf/lacan-four-fundamentals-of-psychoanalysis.pdf
+uploadDate: "2026-07-31T02:12:32.454Z"
+tags:
+  - julia
+---
+
