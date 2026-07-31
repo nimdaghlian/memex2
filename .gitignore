@@ -6,3 +6,5 @@ dist/
 make-gals-copy/
 memex.config.yml
 .obsidian/workspace.json
+site/.obsidian/workspace.json
+site/library
