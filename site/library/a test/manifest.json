@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "originatedBy": "ALICE",
+  "items": [
+    {
+      "path": "Marcel_Duchamp_1973.pdf",
+      "hash": "c0560071091340ba2c6b93ae3d4ab12f5b22880cb8876282ad70f02e390f7d6b",
+      "ni": "ni:///sha-256;wFYAcQkTQLosa5OuPUqxL1siiAy4h2KCrXDwLjkPfWs",
+      "mimetype": "application/pdf",
+      "byteSize": 90532101,
+      "uploadDate": "2026-07-30T23:39:34.525Z"
+    },
+    {
+      "path": "malik_suhail_contra_contemporary.pdf",
+      "hash": "0e9a3a5a432570998c3d58b26dfbbeb0c933f218ca7397aeaa8e0dc877335bbe",
+      "ni": "ni:///sha-256;Dpo6WkMlcJmMPViybfu-sMkz8hjKc5euqo4NyHczW74",
+      "mimetype": "application/pdf",
+      "byteSize": 420024,
+      "uploadDate": "2026-07-30T23:39:34.525Z"
+    },
+    {
+      "path": "mallarme_on_fashion.pdf",
+      "hash": "918e02946bcf5f6a1d75a1cb78eabab510ef10d959a3c6c03c2e832ecf6b347c",
+      "ni": "ni:///sha-256;kY4ClGvPX2oddaHLeOq6tRDvENlZo8bAPC6DLs9rNHw",
+      "mimetype": "application/pdf",
+      "byteSize": 1166158,
+      "uploadDate": "2026-07-30T23:39:34.525Z"
+    },
+    {
+      "path": "mansoor_00_marshall_plan_modernism.pdf",
+      "hash": "1ff145f49eb940d3c3aa91be021fdeac9d9a2abfeb22bab84d64cebec2c82e42",
+      "ni": "ni:///sha-256;H_FF9J65QNPDqpG-Ah_erJ2aKr_rIrq4TWTOvsLILkI",
+      "mimetype": "application/pdf",
+      "byteSize": 12050524,
+      "uploadDate": "2026-07-30T23:39:34.525Z"
+    }
+  ]
+}
