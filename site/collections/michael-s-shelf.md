@@ -15,7 +15,7 @@ tags:
 - [[critical-practive-philosophy-and-creativity-martin-mcquillan-copy]]
 - [[discourse-networks-1800-1900-friedrich-kittler-michael-metteer-transl-stanford-calif-united-states-1990-stanford-university-press-9780804716161-bedbf310504c6164614682257c1e135a-anna-s-archive-copy]]
 - [[foucault-of-other-spaces-copy]]
-- [[gramophone-film-typewriter-isbn-9780804732338-friedrich-kittler-translated-with-an-introduction-by-writing-science-1st-1999-9780804732321-34bda1b9bb4e5d4af3d09e80ded076c0-anna-s-archive-copy]]
+- [[kittler-gramophone-film-typewriter-isbn-9780804732338-friedrich-kittler-translated-with-an-introduction-by-writing-science]]
 - [[harun-farocki-against-what-against-whom-2009-copy]]
 - [[hito-steyerl-i-will-durvive-films-and-installations-hito-steyerl-tom-holert-vanessa-joan-mu-ller-thomas-first-edition-leipzig-2020-9783959053921-dfb75bdaa5b5cccb51a10b1752d1e3ba-anna-s-archive-copy]]
 - [[hito-steyerl-e-fluxl-in-free-fall-copy]]

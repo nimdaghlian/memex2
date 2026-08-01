@@ -2,7 +2,6 @@
 title: Materialist Methods
 tags:
   - matt
-  - materialist methods
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->

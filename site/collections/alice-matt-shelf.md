@@ -1,14 +1,13 @@
 ---
-title: ALICE - Matt Shelf
+title: Matt's Shelf
 tags:
-  - c
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
 
 ---
-[[matt-willis-materialist-methods]]
-[[matt-willis-the-eternal-1973]]
-[[matt-willis-modernity-and-modernism]]
+[[matt-materialist-methods]]
+[[matt-the-eternal-1973]]
+[[matt-modernity-and-modernism]]
 [[matt-medias-technical-aesthetic-habitual]]
-[[matt-willis-remembering-repeating-working-through]]
+[[matt-remembering-repeating-working-through]]

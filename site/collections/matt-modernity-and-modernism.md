@@ -1,5 +1,5 @@
 ---
-title: Matt Willis Modernity and Modernism
+title: Modernity and Modernism
 tags:
   - matt
   - modernity

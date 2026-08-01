@@ -1,5 +1,5 @@
 ---
-title: Matt Willis The Eternal 1973
+title: The Eternal 1973
 tags:
   - matt
   - theory

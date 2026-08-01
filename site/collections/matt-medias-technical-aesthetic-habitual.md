@@ -1,5 +1,5 @@
 ---
-title: Matt Medias; Technical, Aesthetic, Habitual
+title: Medias; Technical, Aesthetic, Habitual
 tags:
   - matt
   - medias

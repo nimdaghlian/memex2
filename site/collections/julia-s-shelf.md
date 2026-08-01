@@ -11,7 +11,7 @@ tags:
 - [[10-5-mistaking-the-moon-for-a-ball-page-132]]
 - [[benjamin-on-some-motifs-in-baudelaire]]
 - [[benjamin-walter-1929-1978-surrealism-the-last-snapshot-of-the-european-intelligentsia]]
-- [[brothers-karamazov-zosima-christian-classics-ethereal-library-grand-rapids-mi]]
+- [[dostoevsky-brothers-karamazov-book-four-the-russian-monk]]
 - [[buck-morss-aestheticsanaesthetics]]
 - [[cesaire-suzanne-surrealism-and-us-the-great-camouflage-writings-of-dissent]]
 - [[lacan-four-fundamentals-of-psychoanalysis]]

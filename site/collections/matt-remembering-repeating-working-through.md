@@ -1,7 +1,8 @@
 ---
-title: Matt Willis Remembering, Repeating, Working Through
+title: Remembering, Repeating, Working Through
 tags:
   - matt
+  - theory
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
