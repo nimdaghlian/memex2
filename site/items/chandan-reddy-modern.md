@@ -8,4 +8,4 @@ tags:
   - modernity
   - modernism
 ---
-
+From _Keywords for American Cultural Studies, Third Edition_  edited by Bruce Burgett and Glenn Hendler
