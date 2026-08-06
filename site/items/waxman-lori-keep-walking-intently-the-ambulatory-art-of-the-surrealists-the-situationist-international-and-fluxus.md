@@ -5,5 +5,8 @@ path: Sarv's PDF shelf For ALICE/Waxman_Lori_Keep_Walking_Intently_The_Ambulator
 uploadDate: 2026-08-03T04:04:41.841Z
 tags:
   - sarv
+  - situationists
+  - surrealism
+  - fluxus
 ---
 

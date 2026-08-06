@@ -6,4 +6,4 @@ uploadDate: 2026-08-03T04:04:41.841Z
 tags:
   - sarv
 ---
-
+A collectively written novel instigated by 

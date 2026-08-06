@@ -15,6 +15,7 @@ tags:
 - [[facos-symbolist-art-in-context]]
 - [[foucault-manet-object-of-painting]]
 - [[freud-a-disturbance-of-memory-on-the-acropolis]]
+
 - [[freud-a-note-upon-the-mystic-writing-pad]]
 - [[freud-an-autobiographical-study]]
 - [[freud-analysis-terminable-and-interminable]]
