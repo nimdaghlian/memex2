@@ -69,7 +69,7 @@
   --page-pad-x: clamp(1rem, 2.5vw, 2.25rem);
   --page-pad-y: clamp(1rem, 3vh, 2.5rem);
   --col-narrow: 22rem;
-  --col-mid: 80rem;
+  --col-mid: 60rem;
   --col-wide: 125rem;
   --gutter: clamp(1rem, 2vw, 2rem);
 }
