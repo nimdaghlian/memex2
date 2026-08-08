@@ -5,5 +5,7 @@ path: Michael's Shelf/Caspar David Friedrich and the Subject of Landscape -- Jos
 uploadDate: 2026-07-31T02:11:52.828Z
 tags:
   - michael
+  - painting
+  - art_history
 ---
 

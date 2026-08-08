@@ -5,5 +5,6 @@ path: Michael's Shelf/Discourse networks 1800 _ 1900 -- Friedrich Kittler_ Micha
 uploadDate: 2026-07-31T02:11:52.828Z
 tags:
   - michael
+  - media_studies
 ---
 
