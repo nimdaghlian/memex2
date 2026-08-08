@@ -10,4 +10,10 @@ eleventyExcludeFromCollections: true
       {% ascii title %}
 </section>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi aliquam laoreet metus, id elementum tellus vulputate et. Mauris eros est, pulvinar vitae condimentum ac, laoreet tincidunt sem. Proin vel lacus mattis libero varius iaculis. Morbi rutrum porta tristique.
+ALICE is a standalone server, a digital library for a future art school. She is named for Radio Alice, a free radio station that operated for a little over one year (1976-1977) in Bologna, Italy before it was shut down by the carabinieri.
+
+You have accessed ALICE through the wifi of the building in which she is presently located. She is not connected to the internet. In fact, ALICE models how we share files after the internet.
+
+To contribute files to ALICE or to suggest a reading list or collection built from the existing files you find here, please email idoradon@protonmail.com.
+
+ALICE is an artwork by Ido Radon with the collaboration of Ním Daghlian. 
