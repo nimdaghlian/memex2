@@ -5,7 +5,6 @@ pageClass: reading left
 permalink: /about/index.html
 eleventyExcludeFromCollections: true
 ---
-{% import "directory.njk" as dir %}
 
 <section class="section">
       {% ascii title %}
