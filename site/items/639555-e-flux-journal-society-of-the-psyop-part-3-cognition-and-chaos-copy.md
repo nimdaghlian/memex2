@@ -1,5 +1,5 @@
 ---
-title: " Paglen - Society of the Psyop Part 3, Cognition and Chaos"
+title: " Trevor Paglen - Society of the Psyop Part 3, Cognition and Chaos"
 item: ni:///sha-256;52eYidoMG_6YFirS_RrvNNMpsqhvy495_ixAcUkyU4k
 path: Michael's Shelf/639555_e-flux-journal-society-of-the-psyop-part-3-cognition-and-chaos copy.pdf
 uploadDate: 2026-07-31T02:11:52.828Z
