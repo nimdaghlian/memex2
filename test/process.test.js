@@ -20,6 +20,19 @@ function setup() {
   return { root, dir, out };
 }
 
+// `warn()` writes straight to stdout (src/output.js), so capturing it means swapping the writer.
+function captureStdout(fn) {
+  const chunks = [];
+  const original = process.stdout.write;
+  process.stdout.write = (chunk) => { chunks.push(String(chunk)); return true; };
+  try {
+    fn();
+  } finally {
+    process.stdout.write = original;
+  }
+  return chunks.join('');
+}
+
 const NOW = '2026-07-07T12:00:00.000Z';
 
 test('runProcess writes a manifest, one Record per asset, and one Collection', () => {
@@ -83,4 +96,27 @@ test('an incremental add is picked up on re-run (manifest + new Record only)', (
   assert.deepEqual(summary.added, ['three.png']);
   assert.equal(readManifest(dir).items.length, 3);
   assert.equal(existsSync(join(out, 'items', 'three.md')), true);
+});
+
+test('processing a directory outside the configured library warns', () => {
+  const { root, dir, out } = setup();
+  const library = join(root, 'elsewhere');
+  mkdirSync(library);
+
+  const output = captureStdout(() =>
+    runProcess({ dir, out, memexId: 'memex-alice', library, now: NOW }),
+  );
+
+  assert.match(output, /outside configured library/);
+});
+
+test('processing a directory inside the configured library does not warn', () => {
+  const { root, dir, out } = setup();
+
+  // setup() puts dir at <root>/fallen-trees, so root IS the library root here.
+  const output = captureStdout(() =>
+    runProcess({ dir, out, memexId: 'memex-alice', library: root, now: NOW }),
+  );
+
+  assert.doesNotMatch(output, /outside configured library/);
 });
