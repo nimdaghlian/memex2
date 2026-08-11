@@ -39,6 +39,8 @@ Tags you add to a Record's frontmatter appear at `/tags/<tag>/`, and `[[wikilink
 
 (To build once without serving: `npm run build:site` → static output in `_site/`.)
 
+By default the site serves your Library itself, copying it into `_site/library` at build time (`libraryMode: embedded`). If your Library is large or already served by another web server, set `libraryMode: external` and point `libraryUrl` at it — Memex then emits asset URLs without ever copying the bytes. See [the quickstart](docs/quickstart.md#embedded-vs-external-library).
+
 New here? [`docs/getting-started.md`](docs/getting-started.md) walks the whole thing end to end in about a minute.
 
 ## Start here
