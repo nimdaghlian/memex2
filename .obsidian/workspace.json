@@ -11,14 +11,10 @@
             "id": "f9db88d6f6caf3b6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "site/items/bao-bun01.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "bao-bun01"
+              "title": "New tab"
             }
           }
         ]
@@ -41,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -94,7 +92,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "site/items/bao-bun01.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +101,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for bao-bun01"
+              "title": "Backlinks"
             }
           },
           {
@@ -182,22 +179,44 @@
   },
   "active": "f9db88d6f6caf3b6",
   "lastOpenFiles": [
-    "_site/library/nimshelf/manifest.json",
-    "_site/tags/nim/index.html",
-    "_site/tags/nim",
-    "_site/tags/dumb/index.html",
-    "_site/tags/dumb",
-    "_site/items/being-dumb-the-awl/index.html",
-    "_site/items/being-dumb-the-awl",
-    "_site/items/atc-april-13-2024/index.html",
-    "_site/items/atc-april-13-2024",
-    "_site/items/2005-shirky-agroupisitsownworstenemy/index.html",
-    "_site/items/2005-shirky-agroupisitsownworstenemy",
-    "site/collections/nimshelf.md",
-    "site/items/being-dumb-the-awl.md",
-    "site/items/as-we-may-think.md",
-    "site/items/atc-april-13-2024.md",
-    "site/items/2005-shirky-agroupisitsownworstenemy.md",
+    "_site/library/a test/mansoor_00_marshall_plan_modernism.pdf",
+    "_site/library/a test/manifest.json",
+    "_site/library/a test/mallarme_on_fashion.pdf",
+    "_site/library/a test/malik_suhail_contra_contemporary.pdf",
+    "_site/library/a test/Marcel_Duchamp_1973.pdf",
+    "_site/library/a test",
+    "_site/library",
+    "_site/assets/themer.js",
+    "_site/assets/site.css",
+    "_site/assets/lewk.css",
+    "_site/assets",
+    "site/items/xerox-book.md",
+    "site/items/who-or-what-is-john-kelsey-a-postscript-mute.md",
+    "site/items/weimar-culture-packet.md",
+    "site/items/wark-the-spectacle-of-disintegration-situationist-passages-out-of-the-twentieth-century.md",
+    "site/items/wark-mckenzie-capital-is-dead-is-this-omething-worse.md",
+    "site/items/wark-beach-beneath-the-street-the-everyday-life-and-glorious-times-of-the-situationist-international.md",
+    "site/items/wark-a-hacker-manifesto.md",
+    "site/items/vortext-reading.md",
+    "site/items/vischmidt-marina-hard-labor-of-speculation.md",
+    "site/items/virno-paul-jokes-and-innovative-action-fo.md",
+    "site/items/vaneigem-raoul-the-revolution-of-everyday-life.md",
+    "site/items/toscano-the-culture-of-abstraction.md",
+    "site/items/toscano-open-secret-of-real-abstraction.md",
+    "site/items/toscano-culture-of-abstraction.md",
+    "site/items/tomkins-calvin-marcel-duchamp-the-afternoon-interviews-2013.md",
+    "site/items/tom-mcdonough-unrepresentable-enemies-on-the-legacy-of-guy-debord-and-the-situationist-international-1.md",
+    "site/items/the-young-girl-in-theory.md",
+    "site/items/the-proliferation-of-margins-felix-guattari.md",
+    "site/items/the-blindman-1-apr-1917.md",
+    "site/items/the-blind-man-2-may-1917.md",
+    "site/items/the-beautiful-hell-ill-will.md",
+    "site/items/the-artwork-caught-by-the-tail-francis-picabia-and-dada-in-baker-george-george-thomas-1970-october-book-cambridge-mass-2007-isbn13-9780262026185-00e6dcaec19f9b963f11a631ada3153e-anna-s-archive.md",
+    "site/items/ted-nelson-computer-lib-dream-machines.md",
+    "site/items/tari-marcello-there-is-no-unhappy-revolution-the-communism-of-destitution.md",
+    "site/items/swartz-aaron-guerilla-open-access-manifesto.md",
+    "site/images/Screenshot 2026-08-02 at 9.22.06 PM.png",
+    "site/images/IMG_1915.jpg",
     "_site/library/hummingbirds/paddleboat08.jpg",
     "_site/library/hummingbirds/paddleboat07.jpg",
     "_site/library/hummingbirds/paddleboat04.jpg",
@@ -205,28 +224,6 @@
     "_site/library/hummingbirds/paddleboat05.jpg",
     "_site/library/hummingbirds/paddleboat03.jpg",
     "_site/library/hummingbirds/paddleboat02.jpg",
-    "_site/library/hummingbirds/paddleboat01.jpg",
-    "_site/library/hummingbirds/bunboys06.jpg",
-    "_site/library/hummingbirds/ms-paddleboat.jpg",
-    "site/collections/hummingbirds.md",
-    "site/items/bao-bun03.md",
-    "site/items/collections/hummingbirds.md",
-    "docs/plans/2026-07-08-op-client-install.md",
-    "docs/getting-started.md",
-    "demo/vault/notes/Redwoods.md",
-    "demo/vault/notes/Ferns.md",
-    "demo/vault/notes/Canopy.md",
-    "demo/vault/collections/FieldGuide.md",
-    "demo/vault/field/Sequoia.md",
-    "demo/vault/archive/Sequoia.md",
-    "demo/DEMO.md",
-    "site/items/paddleboat08.md",
-    "site/items/paddleboat07.md",
-    "site/items/paddleboat06.md",
-    "site/items/paddleboat05.md",
-    "site/items/paddleboat04.md",
-    "site/items/paddleboat03.md",
-    "site/items/paddleboat02.md",
-    "site/items/paddleboat01.md"
+    "_site/library/hummingbirds/paddleboat01.jpg"
   ]
 }
