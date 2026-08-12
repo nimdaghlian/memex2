@@ -11,14 +11,10 @@
             "id": "f9db88d6f6caf3b6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "site/items/bao-bun01.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "bao-bun01"
+              "title": "New tab"
             }
           }
         ]
@@ -41,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -94,7 +92,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "site/items/bao-bun01.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +101,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for bao-bun01"
+              "title": "Backlinks"
             }
           },
           {
@@ -182,22 +179,44 @@
   },
   "active": "f9db88d6f6caf3b6",
   "lastOpenFiles": [
-    "_site/library/nimshelf/manifest.json",
-    "_site/tags/nim/index.html",
-    "_site/tags/nim",
-    "_site/tags/dumb/index.html",
-    "_site/tags/dumb",
-    "_site/items/being-dumb-the-awl/index.html",
-    "_site/items/being-dumb-the-awl",
-    "_site/items/atc-april-13-2024/index.html",
-    "_site/items/atc-april-13-2024",
-    "_site/items/2005-shirky-agroupisitsownworstenemy/index.html",
-    "_site/items/2005-shirky-agroupisitsownworstenemy",
-    "site/collections/nimshelf.md",
-    "site/items/being-dumb-the-awl.md",
-    "site/items/as-we-may-think.md",
-    "site/items/atc-april-13-2024.md",
-    "site/items/2005-shirky-agroupisitsownworstenemy.md",
+    "docs/specs/2026-08-10-memex-rename-design.md",
+    "docs/specs/2026-08-10-memex-retag-design.md",
+    "site/_data/site.json",
+    "_site/library/a test/mansoor_00_marshall_plan_modernism.pdf",
+    "_site/library/a test/manifest.json",
+    "_site/library/a test/mallarme_on_fashion.pdf",
+    "_site/library/a test/malik_suhail_contra_contemporary.pdf",
+    "_site/library/a test/Marcel_Duchamp_1973.pdf",
+    "_site/library/a test",
+    "_site/library",
+    "_site/assets/themer.js",
+    "_site/assets/site.css",
+    "docs/plans/2026-08-10-external-library-mode.md",
+    "docs/specs/2026-08-10-external-library-mode-design.md",
+    "site/items/bumingbai-podcast-transcripts-episodes1-50.md",
+    "site/items/bumingbai-podcast-transcripts-episodes-51-100.md",
+    "site/items/bumingbai-podcast-transcripts-episodes-201-225.md",
+    "site/items/bumingbai-podcast-transcripts-episodes-151-200.md",
+    "site/items/bumingbai-podcast-transcripts-episodes-101-150.md",
+    "site/collections/ripple-s-shelf.md",
+    "site/about.md",
+    "site/kittler-gramophone-film-typewriter-isbn-9780804732338-friedrich-kittler-translated-with-an-introduction-by-writing-science.md",
+    "site/items/waxman-lori-keep-walking-intently-the-ambulatory-art-of-the-surrealists-the-situationist-international-and-fluxus.md",
+    "site/items/waldby-the-visible-human-project-informa.md",
+    "site/items/virillio-from-transportation-revolution-to-commmunication.md",
+    "site/items/virilio-war-and-cinema-the-logistics-of-perception.md",
+    "site/items/virginia-woolf-movies-and-reality.md",
+    "site/items/vicuna-language-is-migrant.md",
+    "site/items/trigg-the-aesthetics-of-decay.md",
+    "site/items/travis-diehl-a-middle-aged-art-man-s-malaise.md",
+    "site/items/toufic-the-subtle-dancer.md",
+    "site/items/tongues-of-glaciers-sedimenting-language-in-roni-horn-s-vatnasafn-library-of-water-and-anne-carson-s-wildly-constant-02666286-2015-1013272.md",
+    "site/items/thomas-mann-death-in-venice.md",
+    "site/items/temporary-services-art-work.md",
+    "site/items/taghizadeh-a-map-of-the-artist-s-mind-asymptote.md",
+    "site/items/susan-sontag-illness-as-metaphor-1978.md",
+    "site/images/Screenshot 2026-08-02 at 9.22.06 PM.png",
+    "site/images/IMG_1915.jpg",
     "_site/library/hummingbirds/paddleboat08.jpg",
     "_site/library/hummingbirds/paddleboat07.jpg",
     "_site/library/hummingbirds/paddleboat04.jpg",
@@ -205,28 +224,6 @@
     "_site/library/hummingbirds/paddleboat05.jpg",
     "_site/library/hummingbirds/paddleboat03.jpg",
     "_site/library/hummingbirds/paddleboat02.jpg",
-    "_site/library/hummingbirds/paddleboat01.jpg",
-    "_site/library/hummingbirds/bunboys06.jpg",
-    "_site/library/hummingbirds/ms-paddleboat.jpg",
-    "site/collections/hummingbirds.md",
-    "site/items/bao-bun03.md",
-    "site/items/collections/hummingbirds.md",
-    "docs/plans/2026-07-08-op-client-install.md",
-    "docs/getting-started.md",
-    "demo/vault/notes/Redwoods.md",
-    "demo/vault/notes/Ferns.md",
-    "demo/vault/notes/Canopy.md",
-    "demo/vault/collections/FieldGuide.md",
-    "demo/vault/field/Sequoia.md",
-    "demo/vault/archive/Sequoia.md",
-    "demo/DEMO.md",
-    "site/items/paddleboat08.md",
-    "site/items/paddleboat07.md",
-    "site/items/paddleboat06.md",
-    "site/items/paddleboat05.md",
-    "site/items/paddleboat04.md",
-    "site/items/paddleboat03.md",
-    "site/items/paddleboat02.md",
-    "site/items/paddleboat01.md"
+    "_site/library/hummingbirds/paddleboat01.jpg"
   ]
 }
