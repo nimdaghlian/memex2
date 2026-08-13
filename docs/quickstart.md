@@ -17,9 +17,27 @@ Then open `memex.config.yml` and set `memexId` to this machine's identity:
 memexId: memex-nim     # this Memex's identity — stamps originatedBy / addedBy
 out: ./site            # where generated Records + Collections (.md) are written
 library: ./library     # the Syncthing-shared Library root that `update` scans
+libraryMode: embedded  # embedded = Eleventy serves the Library; external = your web server does
+libraryUrl: /library/  # URL prefix for asset links (a full origin in external mode)
 ```
 
 `memexId` is required for `process` and `update` because it records *which Memex introduced an asset*. It's machine identity, not a secret — secrets belong in `.env`. The live `memex.config.yml` is gitignored because it's per-machine.
+
+### Embedded vs external Library
+
+`libraryMode` decides who serves your assets.
+
+**`embedded`** (the default) — the Library lives inside this project, wherever `library` points, and Eleventy copies it into `_site/library` at build time. Nothing else to set up. The cost is that a build or a `--watch` session re-copies the whole Library on every change, which stops being free once the Library is large.
+
+**`external`** — the Library lives wherever you want, including on another drive outside this checkout. Memex never reads, copies, or serves those bytes; it only writes URLs that point at them. **You are responsible for serving the Library yourself** — an nginx `alias`, a CDN origin, a static file server, whatever fits. Memex does not set that up or check that it works, so a broken `libraryUrl` shows up as 404s in the browser rather than as a build error.
+
+```yaml
+libraryMode: external
+library: /mnt/photos/library              # anywhere on disk; never copied
+libraryUrl: https://assets.example.com/   # wherever your server answers
+```
+
+Both fields are optional. Omit them and you get `embedded` with `/library/`, which is what every config predating these fields already did.
 
 ## Installing the `memex` command
 

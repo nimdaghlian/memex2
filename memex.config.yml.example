@@ -14,3 +14,17 @@ out: ./site
 
 # The Syncthing-shared Library root that `update` scans for peers' manifests.
 library: ./library
+
+# How the Library gets served to the browser.
+#   embedded (default) — the Library lives inside this project and Eleventy copies it into
+#     _site/library. Simple, and fine at small scale. A build or `--watch` run re-copies the
+#     whole thing on every change, so it gets expensive as the Library grows.
+#   external — the Library lives wherever you point `library` at, including outside this
+#     checkout entirely. Nothing here copies or serves it; that's your web server's job (an
+#     nginx `alias`, a CDN, whatever). Set `libraryUrl` to wherever it answers.
+libraryMode: embedded
+
+# URL prefix for each Record's asset link. In embedded mode this is a site-root path; in
+# external mode it's usually a full origin. A trailing slash is added if you leave it off.
+# Record paths that are already absolute (/... or https://...) pass through untouched.
+libraryUrl: /library/

@@ -1,5 +1,7 @@
 import path from 'node:path';
+import { relative } from 'node:path';
 import figlet from 'figlet';
+import { loadConfig } from './src/config.js';
 import { resolveWikilinks, extractWikilinks, keyOf } from './site/_lib/wikilinks.js';
 import { membersSection, descriptionSection } from './site/_lib/body.js';
 import { mimeForExt, mediaCategory } from './src/mime.js';
@@ -9,12 +11,35 @@ export default function (eleventyConfig) {
   // default — WITHOUT this line the build silently writes 0 files. (node_modules stays ignored.)
   eleventyConfig.setUseGitIgnore(false);
 
-  // Serve the asset Library. It lives at site/library/ (synced by a separate service, not git)
-  // and is copied verbatim to _site/library/ → reachable at /library/<gallery>/<file>. This is
-  // what makes each Record's asset link resolvable in the browser (see site/_data/site.json's
-  // libraryPrefix = "/library/"). Images aren't a template format, so without this passthrough
-  // Eleventy would ignore them.
-  eleventyConfig.addPassthroughCopy({ 'site/library': 'library' });
+  // The Library's location AND how it's served both come from memex.config.yml, the same file the
+  // CLI reads — so `library:` means one thing in `process` and in the build. (It didn't before:
+  // the passthrough source was hardcoded to site/library, so the example config's own default of
+  // ./library produced correct Record paths pointing at bytes the build never copied.)
+  //
+  // embedded: Eleventy serves the Library out of _site/library. Images aren't a template format,
+  //   so without this passthrough Eleventy would ignore them entirely.
+  // external: it doesn't exist as far as Eleventy is concerned — your own web server serves it at
+  //   libraryUrl, and nothing here copies ~1TB on every rebuild.
+  const cfg = loadConfig({});
+  eleventyConfig.addGlobalData('site', { libraryPrefix: cfg.libraryUrl });
+
+  if (cfg.libraryMode === 'embedded') {
+    // cfg.library is absolute; Eleventy wants it project-relative.
+    const librarySrc = relative(process.cwd(), cfg.library);
+    if (!librarySrc || librarySrc.startsWith('..')) {
+      throw new Error(
+        `libraryMode: embedded requires library (${cfg.library}) to be inside the project. ` +
+        `Move it under the project root, or set libraryMode: external and serve it yourself.`,
+      );
+    }
+
+    // 'passthrough' (not the default 'copy') lets the dev server serve these files straight from
+    // source instead of copying them into _site. Verified against @11ty/eleventy 3.1.6: this is
+    // gated to runMode === "serve" only, so a plain build and a --watch session still do a real
+    // recursive-copy. That cost is exactly what external mode exists to avoid.
+    eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
+    eleventyConfig.addPassthroughCopy({ [librarySrc]: 'library' });
+  }
 
   // lewk (framework) + site.css (our overlay, loaded after so it can use lewk's tokens).
   // lewk.css/themer.js are vendored copies from ~/dev/lewk — edit them THERE, then re-copy.

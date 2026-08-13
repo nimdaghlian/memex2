@@ -20,6 +20,14 @@ export function runProcess({ dir, out, memexId, library, now = new Date().toISOS
   }
 
   const dirName = basename(resolve(dir));
+
+  // A directory outside the Library root still processes, but every Record's `path` becomes a
+  // `../`-prefixed escape that no libraryUrl can resolve. Say it once, not once per asset — a
+  // curator doing a deliberate one-off outside the normal layout doesn't need to be blocked.
+  if (library && relative(library, resolve(dir)).startsWith('..')) {
+    warn(`${dir}: outside configured library (${library}) — asset paths/URLs may not resolve correctly`);
+  }
+
   const filenames = scanAssets(dir);
 
   // One pass over bytes: hash + intrinsic facts per asset.
