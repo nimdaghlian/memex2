@@ -6,9 +6,10 @@
   <title>{{ title }}{% if title %} — {% endif %}{{ memex.id }}</title>
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=VT323&display=swap" rel="stylesheet">
+  <!-- Fonts are vendored (site/_assets/fonts/) rather than loaded from Google, because this
+       site runs on machines with no internet connection — a remote <link> there means the
+       page silently falls back to system fonts. Refresh instructions are in fonts.css. -->
+  <link rel="stylesheet" href="/assets/fonts.css">
 
   <link rel="stylesheet" href="/assets/lewk.css">
   <link rel="stylesheet" href="/assets/site.css">
