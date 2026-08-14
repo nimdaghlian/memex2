@@ -11,6 +11,8 @@ tags:
 - [[jameson-fredric-the-antinomies-of-realism]]
 - [[fredric-jameson-the-politics-of-utopia]]
 - [[fredric-jameson-a-singular-modernity-essay-on-the-ontology-of-the-present]]
+- [[fredric-jameson-marxism-and-form-twentieth-century-dialectical-theories-of-literature]]
+- [[fredric-jameson-the-benjamin-files]]
 - [[jameson-fredric-cultural-turn-selected-writings-on-the-postmodern-1983-1998]]
 - [[jameson-fredric-archaeologies-of-the-future-the-desire-called-utopia-and-other-science-fictions]]
 - [[jameson-adornoorhistoricaltropes-copy]]

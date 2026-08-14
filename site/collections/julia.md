@@ -2,6 +2,9 @@
 title: Julia's Shelf
 tags:
   - julia
+  - surrealism
+  - lacan
+  - benjamin
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
