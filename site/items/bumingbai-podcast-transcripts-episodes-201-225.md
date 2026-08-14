@@ -1,7 +1,7 @@
 ---
 title: 不明白 bumingbai podcast transcripts episodes 201-225
 item: ni:///sha-256;q43SJ3vqK4RRANH9UGZUhamBJtXUHVD_6S6dkL99Ivs
-path: Ripple's Shelf/不明白 bumingbai podcast transcripts episodes 201-225.pdf
+path: Ripple/不明白 bumingbai podcast transcripts episodes 201-225.pdf
 uploadDate: "2026-08-10T15:21:59.564Z"
 tags:
   - chinese

@@ -1,7 +1,7 @@
 ---
 title: 不明白 bumingbai podcast transcripts episodes1 -50
 item: ni:///sha-256;fl2rG9Q1oH_bTTv1loXTqmSmEhgBKIL-qb0LYBTKph0
-path: Ripple's Shelf/不明白 bumingbai podcast transcripts episodes1 -50.pdf
+path: Ripple/不明白 bumingbai podcast transcripts episodes1 -50.pdf
 uploadDate: "2026-08-10T15:21:59.564Z"
 tags:
   - chinese
