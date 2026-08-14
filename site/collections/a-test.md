@@ -8,7 +8,7 @@ cover: /images/IMG_1915.jpg
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
 
-This is our first test collection. I have described it.
+This is our first test collection. I have described it.It should be deleted!
 
 ---
 

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "items/mansoor-00-marshall-plan-modernism.md",
+                "file": "collections/a-test.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mansoor-00-marshall-plan-modernism"
+              "title": "a-test"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -185,9 +187,32 @@
   },
   "active": "06062bdcb84ffdc0",
   "lastOpenFiles": [
-    "items/mallarme-on-fashion.md",
-    "items/malik-suhail-contra-contemporary.md",
-    "collections/a-test.md",
+    "collections/alex-s-shelf.md",
+    "items/writing-art-history-after-occupy-october.md",
+    "items/tiqqun-robert-hurley-the-cybernetic-hypothesis-semiotext-e-2020.md",
+    "items/tiqqun-how-is-it-to-be-done-english-imposed-version.md",
+    "items/the-reception-of-the-sixties-october.md",
+    "items/sohn-rethel-formal-characteristics.md",
+    "items/semiotexte-vol-3-no-1-nietzsches-return.md",
+    "items/semiotexte-autonomia-postpolitical-politics.md",
+    "items/semiotexte-antioedipus-from-psychoanalysis-to-schizopolitics-volume-ii-number-3-1977-1.md",
+    "items/semiotexte-2-3-anti-oedipus-from-psychoanalysis-to-schizopolitics-1977.md",
+    "items/rosenberg-theamericanactionpainters.md",
+    "items/rajchman-john-the-deleuze-connections.md",
+    "items/october-the-second-decade-1986.md",
+    "items/october-the-first-decade.md",
+    "items/october-abstraction-8-statements.md",
+    "items/october-46-1988-kluge.md",
+    "items/october-42-1987-broodthaers.md",
+    "items/october-4-1997.md",
+    "items/october-2-1976.md",
+    "items/october-10-1979.md",
+    "items/marcuse-marxism-revolution-and-utopia.md",
+    "items/marcuse-herbert-one-dimensional-man.md",
+    "items/marcuse-herbert-negations-1.md",
+    "items/marcuse-herbert-eros-and-civilisation-a-philosophical-inquiry-into-freud.md",
+    "items/marcuse-herbert-art-as-form-of-reality-nlr-i-74-july-august-1972.md",
+    "items/marcuse-herbert-art-as-a-form-of-reality-1.md",
     "images/IMG_1915.jpg",
     "images",
     "untitled folder"

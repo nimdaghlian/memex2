@@ -1,0 +1,31 @@
+0 verbose cli /nix/store/xv1lykwi8n984ips4rpjv1imfwqpak31-nodejs-22.20.0/bin/node /nix/store/xv1lykwi8n984ips4rpjv1imfwqpak31-nodejs-22.20.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.20.0
+3 silly config load:file:/nix/store/xv1lykwi8n984ips4rpjv1imfwqpak31-nodejs-22.20.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/gallery/memex2/.npmrc
+5 silly config load:file:/nix/store/xv1lykwi8n984ips4rpjv1imfwqpak31-nodejs-22.20.0/etc/npmrc
+6 verbose title npm exec eleventy --watch --output /srv/www/alice
+7 verbose argv "exec" "--" "eleventy" "--watch" "--output" "/srv/www/alice"
+8 verbose logfile logs-max:10 dir:/home/gallery/memex2/.npm/_logs/2026-08-13T23_42_36_998Z-
+9 verbose logfile /home/gallery/memex2/.npm/_logs/2026-08-13T23_42_36_998Z-debug-0.log
+10 silly logfile start cleaning logs, removing 1 files
+11 silly logfile done cleaning log files
+12 verbose stack Error: spawn sh ENOENT
+12 verbose stack     at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+12 verbose stack     at onErrorNT (node:internal/child_process:483:16)
+12 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+13 verbose pkgid memex2@0.1.0
+14 error code ENOENT
+15 error syscall spawn sh
+16 error path /home/gallery/memex2
+17 error errno -2
+18 error enoent spawn sh ENOENT
+19 error enoent This is related to npm not being able to find a file.
+19 error enoent
+20 verbose cwd /home/gallery/memex2
+21 verbose os Linux 6.12.63
+22 verbose node v22.20.0
+23 verbose npm  v10.9.3
+24 verbose exit -2
+25 verbose code -2
+26 error A complete log of this run can be found in: /home/gallery/memex2/.npm/_logs/2026-08-13T23_42_36_998Z-debug-0.log
