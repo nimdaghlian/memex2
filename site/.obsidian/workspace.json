@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "items/claude-le-vi-strauss-the-savage-mind.md",
+                "file": "collections/a-test.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "claude-le-vi-strauss-the-savage-mind"
+              "title": "a-test"
             }
           }
         ]
@@ -187,6 +187,7 @@
   },
   "active": "06062bdcb84ffdc0",
   "lastOpenFiles": [
+    "items/claude-le-vi-strauss-the-savage-mind.md",
     "collections/matt-modernity-and-modernism.md",
     "collections/a-test.md",
     "collections/alex-s-shelf.md",
@@ -212,7 +213,6 @@
     "items/marcuse-marxism-revolution-and-utopia.md",
     "items/marcuse-herbert-one-dimensional-man.md",
     "items/marcuse-herbert-negations-1.md",
-    "items/marcuse-herbert-eros-and-civilisation-a-philosophical-inquiry-into-freud.md",
     "images/IMG_1915.jpg",
     "images",
     "untitled folder"

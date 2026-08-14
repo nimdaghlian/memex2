@@ -3,7 +3,7 @@ title: a test
 tags:
   - ido
   - art
-cover: /images/IMG_1915.jpg
+cover: /library/site-images/IMG_1915.jpg
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
