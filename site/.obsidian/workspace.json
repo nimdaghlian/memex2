@@ -13,20 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-<<<<<<< Updated upstream
-                "file": "collections/a-test.md",
-=======
-                "file": "collections/matt-medias-technical-aesthetic-habitual.md",
->>>>>>> Stashed changes
+                "file": "items/walter-benjamin-theses-on-the-philosophy-of-history.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-<<<<<<< Updated upstream
-              "title": "a-test"
-=======
-              "title": "matt-medias-technical-aesthetic-habitual"
->>>>>>> Stashed changes
+              "title": "walter-benjamin-theses-on-the-philosophy-of-history"
             }
           }
         ]
@@ -68,7 +60,7 @@
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabeticalReverse"
               },
               "icon": "lucide-search",
               "title": "Search"
@@ -84,8 +76,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,65 +185,34 @@
       "bases:Create new base": false
     }
   },
-  "active": "ee3732e67dc35b77",
+  "active": "06062bdcb84ffdc0",
   "lastOpenFiles": [
-<<<<<<< Updated upstream
-    "items/claude-le-vi-strauss-the-savage-mind.md",
+    "collections/matt-remembering-repeating-working-through.md",
+    "items/thomas-nagel-the-view-from-nowhere.md",
+    "items/svetlana-boym-the-future-of-nostalgia.md",
+    "items/stavros-tombazos-time-in-marx-the-categories-of-time-in-marx-s-capital.md",
+    "items/sigmund-freud-remembering-repeating-and-working-through.md",
+    "items/svetlana-boym-future-of-nostalgia-2nd-pdf.md",
+    "items/svetlana-boym-future-of-nostalgia-1st-pdf.md",
+    "items/saidiya-hartman-venus-in-two-acts.md",
+    "items/mike-davis-thanatos-triumphant-nlr-sidecar-2022.md",
+    "items/mary-ann-doane-the-representability-of-time.md",
+    "items/martin-heidegger-history-of-the-concept-of-time-prolegomena.md",
+    "items/mark-fisher-what-is-hauntology.md",
+    "items/mark-fisher-the-slow-cancellation-of-the-future.md",
+    "items/kojin-karatani-history-and-repetition.md",
+    "items/karl-marx-the-eighteenth-brumaire-of-louis-bonaparte-selections.md",
+    "items/gyo-rgy-luka-cs-history-and-class-consciousness.md",
+    "items/fredric-jameson-the-seeds-of-time.md",
+    "items/fredric-jameson-postmodernism-or-the-cultural-logic-of-late-capitalism.md",
+    "items/fredric-jameson-periodizing-the-60s.md",
+    "items/fredric-jameson-nostalgia-for-the-present.md",
+    "items/e-p-thompson-time-work-and-industrial-capitalism.md",
+    "items/anna-greenspan-capitalism-s-transcendental-time-machine.md",
+    "items/alain-badiou-the-rebirth-of-history-introduction.md",
+    "items/walter-benjamin-capitalism-as-religion-chad-kautzer-translation.md",
     "collections/matt-modernity-and-modernism.md",
-    "collections/a-test.md",
-    "collections/alex-s-shelf.md",
-    "items/writing-art-history-after-occupy-october.md",
-    "items/tiqqun-robert-hurley-the-cybernetic-hypothesis-semiotext-e-2020.md",
-    "items/tiqqun-how-is-it-to-be-done-english-imposed-version.md",
-    "items/the-reception-of-the-sixties-october.md",
-    "items/sohn-rethel-formal-characteristics.md",
-    "items/semiotexte-vol-3-no-1-nietzsches-return.md",
-    "items/semiotexte-autonomia-postpolitical-politics.md",
-    "items/semiotexte-antioedipus-from-psychoanalysis-to-schizopolitics-volume-ii-number-3-1977-1.md",
-    "items/semiotexte-2-3-anti-oedipus-from-psychoanalysis-to-schizopolitics-1977.md",
-    "items/rosenberg-theamericanactionpainters.md",
-    "items/rajchman-john-the-deleuze-connections.md",
-    "items/october-the-second-decade-1986.md",
-    "items/october-the-first-decade.md",
-    "items/october-abstraction-8-statements.md",
-    "items/october-46-1988-kluge.md",
-    "items/october-42-1987-broodthaers.md",
-    "items/october-4-1997.md",
-    "items/october-2-1976.md",
-    "items/october-10-1979.md",
-    "items/marcuse-marxism-revolution-and-utopia.md",
-    "items/marcuse-herbert-one-dimensional-man.md",
-    "items/marcuse-herbert-negations-1.md",
-    "images/IMG_1915.jpg",
-    "images",
-    "untitled folder"
-=======
-    "items/anna-mccarthy-television-and-political-culture-after-world-war-2.md",
-    "collections/matt-medias-technical-aesthetic-habitual.md",
-    "items/anna-mccarthy-reality-television-a-neoliberal-theater-of-suffering.md",
-    "items/andre-bazin-the-ontology-of-the-photographic-image-and-the-evolution-of-the-language-of-cinema.md",
-    "items/andrew-dewaard-derivative-media-how-wall-street-devours-culture-selection.md",
-    "items/alexander-galloway-protocol-how-control-exists-after-decentralization.md",
-    "items/alberto-toscano-and-jeff-kinkle-cartographies-of-the-absolute.md",
-    "collections/julia.md",
-    "collections/matt-materialist-methods.md",
-    "items/wendy-weiss-on-the-concept-of-reproduction.md",
-    "items/walter-benjamin-the-arcades-project.md",
-    "items/w-e-b-du-bois-black-reconstruction-in-america.md",
-    "items/tim-barker-some-questions-about-political-capitalism-nlr-140-141-march-june-2023.md",
-    "items/stephen-shapiro-world-systems-theory-for-cultural-studies.md",
-    "items/robert-brenner-the-economics-of-global-tubulence-the-advanced-capitalist-economies-from-long-boom-to-long-downturn-1945-2005.md",
-    "items/raymond-williams-marxism-and-literature.md",
-    "items/phil-a-neel-hinterland-america-s-new-landscape-of-class-and-conflict.md",
-    "items/phil-a-neel-hellworld-the-human-species-and-the-planetary-factory.md",
-    "items/perry-anderson-passages-from-antiquity-to-feudalism.md",
-    "items/michel-wieviorka-from-marx-and-braudel-to-wallerstein.md",
-    "items/karl-marx-fragment-on-machines.md",
-    "items/karl-marx-capital-vol-1-2024-princeton-translation.md",
-    "items/joshua-clover-the-long-1989.md",
-    "items/immanuel-wallerstein-world-systems-analysis-an-introduction.md",
-    "items/gillian-rose-does-marx-have-a-method.md",
-    "items/frank-jacob-ed-wallerstein-2-0-thinking-and-applying-world-systems-theory-in-the-21st-century.md",
+    "items/theodor-w-adorno-and-max-horkheimer-dialectic-of-enlightenment.md",
     "_assets/fonts/pxiKyp0ihIEF2isfFJXUdVNF.woff2",
     "_assets/fonts/pxiKyp0ihIEF2isRFJXUdVNFKPY.woff2",
     "_assets/fonts/pxiKyp0ihIEF2isQFJXUdVNFKPY.woff2",
@@ -265,6 +225,5 @@
     "_assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
     "images/Screenshot 2026-08-02 at 9.22.06 PM.png",
     "images/IMG_1915.jpg"
->>>>>>> Stashed changes
   ]
 }
