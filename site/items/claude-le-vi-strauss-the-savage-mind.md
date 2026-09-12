@@ -5,5 +5,5 @@ path: Matt Willis Materialist Methods/Claude Levi-Strauss- The Savage Mind.pdf
 uploadDate: 2026-07-31T01:42:47.867Z
 tags:
   - matt
-  - materialist methods
+  - materialist_methods
 ---

@@ -13,12 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
+<<<<<<< Updated upstream
                 "file": "collections/a-test.md",
+=======
+                "file": "collections/matt-medias-technical-aesthetic-habitual.md",
+>>>>>>> Stashed changes
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+<<<<<<< Updated upstream
               "title": "a-test"
+=======
+              "title": "matt-medias-technical-aesthetic-habitual"
+>>>>>>> Stashed changes
             }
           }
         ]
@@ -76,7 +84,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -96,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "items/mansoor-00-marshall-plan-modernism.md",
+                "file": "collections/ripple-s-shelf.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +115,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for mansoor-00-marshall-plan-modernism"
+              "title": "Backlinks for ripple-s-shelf"
             }
           },
           {
@@ -115,12 +124,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "items/mansoor-00-marshall-plan-modernism.md",
+                "file": "collections/ripple-s-shelf.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from mansoor-00-marshall-plan-modernism"
+              "title": "Outgoing links from ripple-s-shelf"
             }
           },
           {
@@ -158,13 +167,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "items/mansoor-00-marshall-plan-modernism.md",
+                "file": "collections/ripple-s-shelf.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of mansoor-00-marshall-plan-modernism"
+              "title": "Outline of ripple-s-shelf"
             }
           }
         ]
@@ -185,8 +194,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "06062bdcb84ffdc0",
+  "active": "ee3732e67dc35b77",
   "lastOpenFiles": [
+<<<<<<< Updated upstream
     "items/claude-le-vi-strauss-the-savage-mind.md",
     "collections/matt-modernity-and-modernism.md",
     "collections/a-test.md",
@@ -216,5 +226,45 @@
     "images/IMG_1915.jpg",
     "images",
     "untitled folder"
+=======
+    "items/anna-mccarthy-television-and-political-culture-after-world-war-2.md",
+    "collections/matt-medias-technical-aesthetic-habitual.md",
+    "items/anna-mccarthy-reality-television-a-neoliberal-theater-of-suffering.md",
+    "items/andre-bazin-the-ontology-of-the-photographic-image-and-the-evolution-of-the-language-of-cinema.md",
+    "items/andrew-dewaard-derivative-media-how-wall-street-devours-culture-selection.md",
+    "items/alexander-galloway-protocol-how-control-exists-after-decentralization.md",
+    "items/alberto-toscano-and-jeff-kinkle-cartographies-of-the-absolute.md",
+    "collections/julia.md",
+    "collections/matt-materialist-methods.md",
+    "items/wendy-weiss-on-the-concept-of-reproduction.md",
+    "items/walter-benjamin-the-arcades-project.md",
+    "items/w-e-b-du-bois-black-reconstruction-in-america.md",
+    "items/tim-barker-some-questions-about-political-capitalism-nlr-140-141-march-june-2023.md",
+    "items/stephen-shapiro-world-systems-theory-for-cultural-studies.md",
+    "items/robert-brenner-the-economics-of-global-tubulence-the-advanced-capitalist-economies-from-long-boom-to-long-downturn-1945-2005.md",
+    "items/raymond-williams-marxism-and-literature.md",
+    "items/phil-a-neel-hinterland-america-s-new-landscape-of-class-and-conflict.md",
+    "items/phil-a-neel-hellworld-the-human-species-and-the-planetary-factory.md",
+    "items/perry-anderson-passages-from-antiquity-to-feudalism.md",
+    "items/michel-wieviorka-from-marx-and-braudel-to-wallerstein.md",
+    "items/karl-marx-fragment-on-machines.md",
+    "items/karl-marx-capital-vol-1-2024-princeton-translation.md",
+    "items/joshua-clover-the-long-1989.md",
+    "items/immanuel-wallerstein-world-systems-analysis-an-introduction.md",
+    "items/gillian-rose-does-marx-have-a-method.md",
+    "items/frank-jacob-ed-wallerstein-2-0-thinking-and-applying-world-systems-theory-in-the-21st-century.md",
+    "_assets/fonts/pxiKyp0ihIEF2isfFJXUdVNF.woff2",
+    "_assets/fonts/pxiKyp0ihIEF2isRFJXUdVNFKPY.woff2",
+    "_assets/fonts/pxiKyp0ihIEF2isQFJXUdVNFKPY.woff2",
+    "_assets/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2",
+    "_assets/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2",
+    "_assets/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2",
+    "_assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2",
+    "_assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2",
+    "_assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2",
+    "_assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
+    "images/Screenshot 2026-08-02 at 9.22.06 PM.png",
+    "images/IMG_1915.jpg"
+>>>>>>> Stashed changes
   ]
 }
