@@ -6,6 +6,6 @@ uploadDate: 2026-07-31T01:43:27.058Z
 tags:
   - matt
   - medias
-cover: alice/library/site-images/IMG_1915.jpg
+cover: /library/site-images/IMG_1915.jpg
 ---
 
