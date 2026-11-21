@@ -2,6 +2,8 @@
 title: Alex's Shelf
 tags:
   - alex
+  - art_history
+  - psychoanalysis
 ---
 
 <!-- Describe this collection above the rule. Links below it are its members. -->
